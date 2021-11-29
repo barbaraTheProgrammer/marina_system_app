@@ -3,7 +3,7 @@
 places at marina
 @forelse ($places as $place)
     <div>
-        place: {{ $place->place }}
+        place: {{ $place->pier }}{{ $place->spot_nr }}
         status:
         @if ($place->status == '1')
             active
@@ -11,6 +11,7 @@ places at marina
             inactive
         @endif
         <a href="places/{{ $place->id }}"> show place details </a>
+        <a href="places/{{ $place->id }}/edit"> edit place</a>
     </div>
 @empty
     No places in database

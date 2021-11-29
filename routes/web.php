@@ -25,3 +25,5 @@ Route::get('/places', 'App\Http\Controllers\PlaceController@index');
 Route::get('/places/create', 'App\Http\Controllers\PlaceController@create');
 Route::post('/places', 'App\Http\Controllers\PlaceController@store');
 Route::get('/places/{place}', 'App\Http\Controllers\PlaceController@show');
+Route::get('/places/{place}/edit', 'App\Http\Controllers\PlaceController@edit');
+Route::put('/places/{place}', 'App\Http\Controllers\PlaceController@update');

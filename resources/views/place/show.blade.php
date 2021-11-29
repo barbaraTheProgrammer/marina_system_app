@@ -5,4 +5,6 @@
 
     place: {{ $place->place }}
     status: {{ $place->status }}
+
+    <a href="places/{{ $place->id }}/edit"> edit place</a>
 @endif
