@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/places', 'App\Http\Controllers\PlaceController@index');
+Route::get('/places/create', 'App\Http\Controllers\PlaceController@create');
+Route::post('/places', 'App\Http\Controllers\PlaceController@store');
+Route::get('/places/{place}', 'App\Http\Controllers\PlaceController@show');
