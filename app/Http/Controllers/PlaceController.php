@@ -25,19 +25,20 @@ class PlaceController extends Controller
         $validatedData = $this->validatedPlaceData();
 
         $pier = $validatedData['pier'];
-        $spot_nr = $validatedData['spot_nr'];
+        $spotNumber = $validatedData['spotNumber'];
         $status = $validatedData['status'];
+        $currUserId = $this->getCurrUserId();
             
+        DB::table('places')->insertGetId(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId]);
 
-        DB::table('places')->insertGetId(['pier' => $pier, 'spot_nr' => $spot_nr, 'status' => $status]);
-
-        return redirect('/places');
+        return redirect()->route('placeIndex');
     }
 
     public function show($placeId) {
         $place = DB::table('places')->where('id', $placeId)->get()->first();
+        $placeCreatedBy = DB::table('users')->where('id', $place->created_by)->get()->first()->name;
         
-        return view('place.show', compact('place'));
+        return view('place.show', compact('place','placeCreatedBy'));
     }
 
     public function edit($placeId) {
@@ -51,28 +52,33 @@ class PlaceController extends Controller
         $validatedData = $this->validatedPlaceData();
 
         $pier = $validatedData['pier'];
-        $spot_nr = $validatedData['spot_nr'];
+        $spotNumber = $validatedData['spotNumber'];
         $status = $validatedData['status'];
-            
+        $currUserId = $this->getCurrUserId();    
 
-        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_nr' => $spot_nr, 'status' => $status]);
+        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId]);
 
-        return redirect('/places');
+        return redirect()->route('placeIndex');
     }
 
     public function destroy($placeId)
     {
         DB::table('places')->where('id', $placeId)->delete();
 
-        return redirect('/places');
+        return redirect()->route('placeIndex');
     }
 
     private function validatedPlaceData()
     {
         return request()->validate([
             'pier' => 'required|alpha',
-            'spot_nr' => 'required|integer|min:0',
+            'spotNumber' => 'required|integer|min:0',
             'status' => 'required'
         ]);
+    }
+
+
+    private function getCurrUserId() {
+        return auth()->user()->id;
     }
 }

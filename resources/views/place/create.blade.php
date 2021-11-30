@@ -10,9 +10,9 @@ create place
     </div>
     
     <div>
-        <label for="spot_nr">Spot number</label>
-        <input type="text" name="spot_nr" autocomplete="off" value=" {{ old('spot_nr') }}"">
-        @error('spot_nr')
+        <label for="spotNumber">Spot number</label>
+        <input type="text" name="spotNumber" autocomplete="off" value=" {{ old('spotNumber') }}"">
+        @error('spotNumber')
             <div> {{ $message }} </div>
         @enderror
     </div>

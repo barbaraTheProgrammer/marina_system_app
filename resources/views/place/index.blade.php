@@ -3,7 +3,7 @@
 places at marina
 @forelse ($places as $place)
     <div>
-        place: {{ $place->pier }}{{ $place->spot_nr }}
+        place: {{ $place->pier }}{{ $place->spot_number }}
         status:
         @if ($place->status == '1')
             active

@@ -4,8 +4,14 @@
     Details of place
 
     pier: {{ $place->pier }}
-    spot number: {{ $place->spot_nr }}
-    status: {{ $place->status }}
+    spot number: {{ $place->spot_number }}
+    status:
+        @if ($place->status == '1')
+            active
+        @else
+            inactive
+        @endif
+    created by: {{ $placeCreatedBy }}
 
     <a href="{{ route('placeEdit', $place->id) }}"> edit place</a>
 
