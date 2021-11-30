@@ -28,3 +28,5 @@ Route::get('/places/{place}', 'App\Http\Controllers\PlaceController@show')->name
 Route::get('/places/{place}/edit', 'App\Http\Controllers\PlaceController@edit')->name('placeEdit');
 Route::put('/places/{place}', 'App\Http\Controllers\PlaceController@update')->name('placeUpdate');
 Route::delete('/places/{place}', 'App\Http\Controllers\PlaceController@destroy')->name('placeDestroy');
+
+Route::get('skippers', 'App\Http\Controllers\SkipperController@index')->name('skipperIndex');
