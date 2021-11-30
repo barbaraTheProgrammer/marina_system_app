@@ -1,6 +1,6 @@
 create place
 
-<form action="/places" method="post">
+<form action="{{ route('placeStore') }}" method="post">
     <div>
         <label for="pier">Pier</label>
         <input type="text" name="pier" autocomplete="off" value=" {{ old('pier') }} ">

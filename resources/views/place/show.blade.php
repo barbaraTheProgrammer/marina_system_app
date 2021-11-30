@@ -3,8 +3,15 @@
 @else
     Details of place
 
-    place: {{ $place->place }}
+    pier: {{ $place->pier }}
+    spot number: {{ $place->spot_nr }}
     status: {{ $place->status }}
 
-    <a href="places/{{ $place->id }}/edit"> edit place</a>
+    <a href="{{ route('placeEdit', $place->id) }}"> edit place</a>
+
+    <form action="{{ route('placeDestroy', $place->id) }}" method="post" onclick="return confirm('Are you sure?')">
+        @method('DELETE')
+        @csrf
+        <button>delete</button>
+    </form>
 @endif

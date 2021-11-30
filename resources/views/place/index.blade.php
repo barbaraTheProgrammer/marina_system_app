@@ -1,4 +1,4 @@
-<a href="places/create">create place</a>
+<a href="{{ route('placeCreate') }}">create place</a>
 
 places at marina
 @forelse ($places as $place)
@@ -10,8 +10,9 @@ places at marina
         @else
             inactive
         @endif
-        <a href="places/{{ $place->id }}"> show place details </a>
-        <a href="places/{{ $place->id }}/edit"> edit place</a>
+
+        <a href="{{ route('placeShow', $place->id) }}"> show place details </a>
+
     </div>
 @empty
     No places in database

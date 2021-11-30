@@ -1,6 +1,6 @@
 Edit place
 
-<form action="/places/{{ $place->id }}" method="post">
+<form action="{{ route('placeUpdate', $place->id) }}" method="post">
 
     @method("PUT")
 

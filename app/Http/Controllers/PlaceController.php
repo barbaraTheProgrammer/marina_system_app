@@ -22,11 +22,7 @@ class PlaceController extends Controller
 
     public function store() {
         
-        $validatedData = request()->validate([
-            'pier' => 'required|alpha',
-            'spot_nr' => 'required|integer|min:0',
-            'status' => 'required'
-        ]);
+        $validatedData = $this->validatedPlaceData();
 
         $pier = $validatedData['pier'];
         $spot_nr = $validatedData['spot_nr'];
@@ -40,7 +36,7 @@ class PlaceController extends Controller
 
     public function show($placeId) {
         $place = DB::table('places')->where('id', $placeId)->get()->first();
-
+        
         return view('place.show', compact('place'));
     }
 
@@ -52,11 +48,7 @@ class PlaceController extends Controller
 
     public function update($placeId) {
         
-        $validatedData = request()->validate([
-            'pier' => 'required|alpha',
-            'spot_nr' => 'required|integer|min:0',
-            'status' => 'required'
-        ]);
+        $validatedData = $this->validatedPlaceData();
 
         $pier = $validatedData['pier'];
         $spot_nr = $validatedData['spot_nr'];
@@ -68,5 +60,19 @@ class PlaceController extends Controller
         return redirect('/places');
     }
 
-    // CLEAN THE VALIDATION AS EXTERnal funtiron
+    public function destroy($placeId)
+    {
+        DB::table('places')->where('id', $placeId)->delete();
+
+        return redirect('/places');
+    }
+
+    private function validatedPlaceData()
+    {
+        return request()->validate([
+            'pier' => 'required|alpha',
+            'spot_nr' => 'required|integer|min:0',
+            'status' => 'required'
+        ]);
+    }
 }

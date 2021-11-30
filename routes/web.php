@@ -21,9 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/places', 'App\Http\Controllers\PlaceController@index');
-Route::get('/places/create', 'App\Http\Controllers\PlaceController@create');
-Route::post('/places', 'App\Http\Controllers\PlaceController@store');
-Route::get('/places/{place}', 'App\Http\Controllers\PlaceController@show');
-Route::get('/places/{place}/edit', 'App\Http\Controllers\PlaceController@edit');
-Route::put('/places/{place}', 'App\Http\Controllers\PlaceController@update');
+Route::get('/places', 'App\Http\Controllers\PlaceController@index')->name('placeIndex');
+Route::get('/places/create', 'App\Http\Controllers\PlaceController@create')->name('placeCreate');
+Route::post('/places', 'App\Http\Controllers\PlaceController@store')->name('placeStore');
+Route::get('/places/{place}', 'App\Http\Controllers\PlaceController@show')->name('placeShow');
+Route::get('/places/{place}/edit', 'App\Http\Controllers\PlaceController@edit')->name('placeEdit');
+Route::put('/places/{place}', 'App\Http\Controllers\PlaceController@update')->name('placeUpdate');
+Route::delete('/places/{place}', 'App\Http\Controllers\PlaceController@destroy')->name('placeDestroy');
