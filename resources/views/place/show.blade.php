@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 @if ($place == null)
     There is no such place
 @else
@@ -12,6 +16,7 @@
             inactive
         @endif
     created by: {{ $placeCreatedBy }}
+    created at: {{ $place->created_at }}
 
     <a href="{{ route('placeEdit', $place->id) }}"> edit place</a>
 
@@ -21,3 +26,5 @@
         <button>delete</button>
     </form>
 @endif
+
+@endsection

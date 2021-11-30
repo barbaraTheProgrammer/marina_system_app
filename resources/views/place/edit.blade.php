@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 Edit place
 
 <form action="{{ route('placeUpdate', $place->id) }}" method="post">
@@ -14,7 +18,7 @@ Edit place
     
     <div>
         <label for="spotNumber">Spot number</label>
-        <input type="text" name="spotNumber" autocomplete="off" value=" {{ $place->spot_number }}"">
+        <input type="text" name="spotNumber" autocomplete="off" value=" {{ $place->spot_number }}">
         @error('spotNumber')
             <div> {{ $message }} </div>
         @enderror
@@ -33,3 +37,5 @@ Edit place
 
     <button> Update place </button>
 </form>
+
+@endsection

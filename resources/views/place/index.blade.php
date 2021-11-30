@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <a href="{{ route('placeCreate') }}">create place</a>
 
 places at marina
@@ -11,9 +15,11 @@ places at marina
             inactive
         @endif
 
-        <a href="{{ route('placeShow', $place->id) }}"> show place details </a>
+        <a href="{{ route('placeShow', $place->id) }}">show details</a>
 
     </div>
 @empty
     No places in database
 @endforelse
+
+@endsection

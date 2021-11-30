@@ -2,8 +2,6 @@
 
 @section('content')
 
-MARINA HOME SSTART
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -23,7 +21,5 @@ MARINA HOME SSTART
         </div>
     </div>
 </div>
-
-MARINA HOME END
 
 @endsection

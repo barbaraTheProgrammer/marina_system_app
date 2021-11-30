@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PlaceController extends Controller
 {
@@ -29,7 +30,7 @@ class PlaceController extends Controller
         $status = $validatedData['status'];
         $currUserId = $this->getCurrUserId();
             
-        DB::table('places')->insertGetId(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId]);
+        DB::table('places')->insertGetId(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId, 'created_at' => Carbon::now()]);
 
         return redirect()->route('placeIndex');
     }
@@ -56,7 +57,7 @@ class PlaceController extends Controller
         $status = $validatedData['status'];
         $currUserId = $this->getCurrUserId();    
 
-        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId]);
+        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId, 'updated_at' => Carbon::now()]);
 
         return redirect()->route('placeIndex');
     }

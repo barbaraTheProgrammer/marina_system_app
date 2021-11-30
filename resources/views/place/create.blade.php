@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 create place
 
 <form action="{{ route('placeStore') }}" method="post">
@@ -11,7 +15,7 @@ create place
     
     <div>
         <label for="spotNumber">Spot number</label>
-        <input type="text" name="spotNumber" autocomplete="off" value=" {{ old('spotNumber') }}"">
+        <input type="text" name="spotNumber" autocomplete="off" value=" {{ old('spotNumber') }}">
         @error('spotNumber')
             <div> {{ $message }} </div>
         @enderror
@@ -30,3 +34,5 @@ create place
 
     <button> Add new place </button>
 </form>
+
+@endsection
