@@ -2,7 +2,7 @@
 
 @section('content')
 
-Edit place
+<h1>Edit place</h1>
 
 <form action="{{ route('placeUpdate', $place->id) }}" method="post">
 
@@ -35,7 +35,7 @@ Edit place
 
     @csrf
 
-    <button> Update place </button>
+    <button class="link-button">Update place</button>
 </form>
 
 @endsection

@@ -30,7 +30,7 @@ class PlaceController extends Controller
         $status = $validatedData['status'];
         $currUserId = $this->getCurrUserId();
             
-        DB::table('places')->insertGetId(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId, 'created_at' => Carbon::now()]);
+        DB::table('places')->insertGetId(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId, 'updated_by' => $currUserId, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
 
         return redirect()->route('placeIndex');
     }
@@ -38,8 +38,9 @@ class PlaceController extends Controller
     public function show($placeId) {
         $place = DB::table('places')->where('id', $placeId)->get()->first();
         $placeCreatedBy = DB::table('users')->where('id', $place->created_by)->get()->first()->name;
+        $placeUpdatedBy = DB::table('users')->where('id', $place->updated_by)->get()->first()->name;
         
-        return view('place.show', compact('place','placeCreatedBy'));
+        return view('place.show', compact('place','placeCreatedBy','placeUpdatedBy'));
     }
 
     public function edit($placeId) {
@@ -57,9 +58,9 @@ class PlaceController extends Controller
         $status = $validatedData['status'];
         $currUserId = $this->getCurrUserId();    
 
-        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'created_by' => $currUserId, 'updated_at' => Carbon::now()]);
+        DB::table('places')->where('id', $placeId)->update(['pier' => $pier, 'spot_number' => $spotNumber, 'status' => $status, 'updated_by' => $currUserId, 'updated_at' => Carbon::now()]);
 
-        return redirect()->route('placeIndex');
+        return redirect()->route('placeShow', $placeId);
     }
 
     public function destroy($placeId)

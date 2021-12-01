@@ -1,0 +1,19 @@
+// body {
+//     background: url('../img/yacht-background.jpg');
+//     background-size: cover;
+// }
+
+.link-button,
+button.link-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: $khaki;
+    color: $warmWhite;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+        background-color: $lightBlue;
+        color: $warmWhite;
+    }
+}

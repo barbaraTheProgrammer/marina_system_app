@@ -2,7 +2,7 @@
 
 @section('content')
 
-create place
+<h1>Create place</h1>
 
 <form action="{{ route('placeStore') }}" method="post">
     <div>
@@ -32,7 +32,7 @@ create place
 
     @csrf
 
-    <button> Add new place </button>
+    <button class="link-button">Add new place</button>
 </form>
 
 @endsection

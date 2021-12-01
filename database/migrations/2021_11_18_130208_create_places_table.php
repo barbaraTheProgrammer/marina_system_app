@@ -19,6 +19,7 @@ class CreatePlacesTable extends Migration
             $table->string('spot_number');
             $table->boolean('status')->default('1');
             $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }
