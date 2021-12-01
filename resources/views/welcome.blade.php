@@ -19,9 +19,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    MARINEYE
-    
-    <a href="{{ route('login') }}">Log in</a>
+<body class="welcome-body">
+    <div class="welcome-content">
+        <div class="app-name-wrapper">
+            <h1 class="app-name">Marineye</h1>
+        </div>
+        <div class="login-button-wrapper">
+            <a class="link-button login-button" href="{{ route('login') }}">Log in</a>
+        </div>
+    </div>
 </body>
 </html>

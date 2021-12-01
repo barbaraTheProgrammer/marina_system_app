@@ -10019,6 +10019,27 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.welcome-body {
+  background: url(/images/yacht-background.jpg?d2cf5cbd33aaa820117f61543661cd4d);
+  background-size: cover;
+}
+.welcome-body .welcome-content {
+  margin-top: 30vh;
+}
+.welcome-body .welcome-content .app-name {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 4rem;
+}
+.welcome-body .welcome-content .login-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.welcome-body .welcome-content .login-button-wrapper .login-button.link-button {
+  margin-top: 2vh;
+}
+
 .link-button,
 button.link-button {
   display: inline-block;
