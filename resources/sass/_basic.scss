@@ -1,26 +1,5 @@
-.welcome-body {
-    background: url('../img/yacht-background.jpg');
-    background-size: cover;
-
-    .welcome-content {
-        margin-top: 30vh;
-
-        .app-name {
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 4rem;
-        }
-
-        .login-button-wrapper {
-            display: flex;
-            justify-content: center;
-
-            .login-button.link-button {
-                margin-top: 2vh;
-            }
-        }
-    }
+.section-header {
+    font-size: 1.4rem;
 }
 
 .link-button,
@@ -36,4 +15,12 @@ button.link-button {
         background-color: $lightBlue;
         color: $warmWhite;
     }
+}
+
+.info-message {
+    color: $lightBlue;
+}
+
+.error-message {
+    color: $oceanBlue;
 }

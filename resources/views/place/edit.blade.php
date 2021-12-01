@@ -12,7 +12,7 @@
         <label for="pier">Pier</label>
         <input type="text" name="pier" autocomplete="off" value=" {{ $place->pier }} ">
         @error('pier')
-            <div> {{ $message }} </div>
+            <div class="error-message"> {{ $message }} </div>
         @enderror
     </div>
     
@@ -20,7 +20,7 @@
         <label for="spotNumber">Spot number</label>
         <input type="text" name="spotNumber" autocomplete="off" value=" {{ $place->spot_number }}">
         @error('spotNumber')
-            <div> {{ $message }} </div>
+            <div class="error-message"> {{ $message }} </div>
         @enderror
     </div>
 
@@ -35,7 +35,7 @@
 
     @csrf
 
-    <button class="link-button">Update place</button>
+    <button class="link-button">update place</button>
 </form>
 
 @endsection

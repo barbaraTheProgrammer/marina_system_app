@@ -38,7 +38,13 @@
                                 <a class="nav-link" href="{{ route('placeIndex') }}">Places</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('yachtIndex') }}">Yachts</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('skipperIndex') }}">Skippers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('trafficIndex') }}">Traffic</a>
                             </li>
                         @endauth 
                     </ul>

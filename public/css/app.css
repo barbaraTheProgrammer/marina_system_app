@@ -10040,6 +10040,10 @@ h3 {
   margin-top: 2vh;
 }
 
+.section-header {
+  font-size: 1.3rem;
+}
+
 .link-button,
 button.link-button {
   display: inline-block;
@@ -10053,6 +10057,14 @@ button.link-button:hover {
   text-decoration: none;
   background-color: #8FC1E3;
   color: #F7F9FB;
+}
+
+.info-message {
+  color: #8FC1E3;
+}
+
+.error-message {
+  color: #31708E;
 }
 
 .listing-wrapper {
