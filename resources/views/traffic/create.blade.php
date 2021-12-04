@@ -4,7 +4,9 @@
     <h1>New coming</h1>
 
     <form action="{{ route('trafficStore') }}" method="post">
+
         <span class="section-header">About marina:</span>
+
         <div>
             <label for="pier">Pier:</label>
             <input type="text" name="pier" value="{{ old("pier") }}">
@@ -12,6 +14,7 @@
             <div class="error-message"> {{ $message }} </div>
             @enderror
         </div>
+
         <div>
             <label for="spotNumber">Spot number:</label>
             <input type="number" name="spotNumber" value="{{ old("spotNumber") }}">
@@ -19,6 +22,7 @@
             <div class="error-message"> {{ $message }} </div>
             @enderror
         </div>
+
         <div>
             <label for="dateOfCome">Date of come:</label>
             <input type="date" name="dateOfCome" value="{{ old("dateOfCome") }}">
@@ -26,6 +30,7 @@
                 <div class="error-message"> {{ $message }} </div>
             @enderror
         </div>
+
         <div>
             <label for="dateOfLeave">Date of leave:</label>
             <input type="date" name="dateOfLeave" value="{{ old("dateOfLeave") }}">
@@ -34,45 +39,95 @@
             @enderror
         </div>
 
-        <form action="#" method="post">
-            <span class="section-header">About yacht:</span>
 
-            <form action="{{ route('yachtCheckIfExists') }}" method="post">
-                <div>
-                    <label for="registrationNumber">Registration number:</label>
-                    <input type="text" name="registrationNumber" value="{{ old("registrationNumber") }}">
-                    @error('registrationNumber')
-                        <div class="error-message"> {{ $message }} </div>
-                    @enderror
-                </div>
-                <div>
-                    <button class="link-button">check if exists</button>
-                    <p class="info-message">*if yacht already exists in database, rest of the form will fill automatically</p>
-                </div>
-            </form>
-            
-            <div>
-                <label for="yachtName">Name:</label>
-                <input type="text" name="yachtName" value="{{ old("yachtName") }}">
-                @error('yachtName')
-                    <div class="error-message"> {{ $message }} </div>
-                @enderror
-            </div>
-            <div>
-                <label for="yachtType">Type:</label>
-                <input type="text" name="yachtType" value="{{ old("yachtType") }}">
-                @error('yachtType')
-                    <div class="error-message"> {{ $message }} </div>
-                @enderror
-            </div>
-            <div>
-                <label for="yachtOwner">Owner:</label>
-                <input type="text" name="yachtOwner" value="{{ old("yachtOwner") }}">
-                @error('yachtOwner')
-                    <div class="error-message"> {{ $message }} </div>
-                @enderror
-            </div>
-        </form>
+        <span class="section-header">About yacht:</span>
+        @isset($yacht)
+            <span class="info-message">Yacht already exists in database</span>
+        @endisset
+        
+        <div>
+            <label for="yachtName">Name:</label>
+            <input type="text" name="yachtName" value="{{ $yacht->name ?? old("yachtName") }}">
+            @error('yachtName')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="yachtRegistrationNumber">Registration number:</label>
+            <input type="text" name="yachtRegistrationNumber" value="{{ $yacht->registration_number ?? $registrationNumber ?? old("yachtRegistrationNumber") }}">          
+            @error('yachtRegistrationNumber')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="yachtType">Type:</label>
+            <input type="text" name="yachtType" value="{{ $yacht->type ?? old("yachtType") }}">       
+            @error('yachtType')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="yachtLength">Length:</label>
+            <input type="text" name="yachtLength" value="{{ $yacht->length ?? old("yachtLength")}}">         
+            @error('yachtLength')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="yachtOwner">Owner:</label>
+            <input type="text" name="yachtOwner" value="{{ $yacht->owner ?? old("yachtOwner") }}">  
+            @error('yachtOwner')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+
+        <span class="section-header">About skipper:</span>
+        @isset($skipper)
+            <span class="info-message">Skipper already exists in database</span>
+        @endisset
+        
+        <div>
+            <label for="skipperName">Name:</label>
+            <input type="text" name="skipperName" value="{{ $skipper->name ?? old("skipperName") }}">
+            @error('skipperName')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+        <div>
+            <label for="skipperSurname">Surname:</label>
+            <input type="text" name="skipperSurname" value="{{ $skipper->surname ?? old("skipperSurname")}}">
+            @error('skipperSurname')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+        <div>
+            <label for="skipperPersonalIdNumber">Personal ID number:</label>
+            <input type="text" name="skipperPersonalIdNumber" value="{{ $skipper->personal_id_nr ?? old("skipperPersonalIdNumber") }}">
+            @error('skipperPersonalIdNumber')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="skipperCountry">Country:</label>
+            <input type="text" name="skipperCountry" value="{{ $skipper->country ?? old("skipperCountry") }}">
+            @error('skipperCountry')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
+
+        <div>
+            <label for="skipperEmail">Email:</label>
+            <input type="text" name="skipperEmail" value="{{ $skipper->email ?? $skipperEmail ?? old("skipperEmail") }}">
+            @error('skipperEmail')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+        </div>
 
         @csrf
 

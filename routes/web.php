@@ -30,10 +30,10 @@ Route::put('/places/{place}', 'App\Http\Controllers\PlaceController@update')->na
 Route::delete('/places/{place}', 'App\Http\Controllers\PlaceController@destroy')->name('placeDestroy');
 
 Route::get('/yachts', 'App\Http\Controllers\YachtController@index')->name('yachtIndex');
-Route::post('/yachts', 'App\Http\Controllers\YachtController@checkIfExists')->name('yachtCheckIfExists');
 
 Route::get('/skippers', 'App\Http\Controllers\SkipperController@index')->name('skipperIndex');
 
 Route::get('/traffic', 'App\Http\Controllers\TrafficController@index')->name('trafficIndex');
 Route::get('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');
 Route::post('/traffic', 'App\Http\Controllers\TrafficController@store')->name('trafficStore');
+Route::post('/traffic/create', 'App\Http\Controllers\TrafficController@checkIfExists')->name('trafficCheckIfExists');

@@ -16,7 +16,7 @@ class CreateYachtsTable extends Migration
         Schema::create('yachts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('registration_number');
+            $table->string('registration_number')->unique();
             $table->string('type');
             $table->string('length');
             $table->string('owner');

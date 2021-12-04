@@ -15,7 +15,7 @@ class CreateTrafficTable extends Migration
     {
         Schema::create('traffic', function (Blueprint $table) {
             $table->id();
-            $table->string('palce_id')->unique();
+            $table->string('place_id')->unique();
             $table->date('date_of_come');
             $table->date('date_of_leave');
             $table->string('yacht_id');
