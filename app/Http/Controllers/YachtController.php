@@ -33,6 +33,14 @@ class YachtController extends Controller
         ]);
     }
 
+    public function show($yachtId) {
+        $yacht = DB::table('yachts')->where('id', $yachtId)->get()->first();
+        $yachtCreatedBy = DB::table('users')->where('id', $yacht->created_by)->get()->first()->name;
+        $yachtUpdatedBy = DB::table('users')->where('id', $yacht->updated_by)->get()->first()->name;
+        
+        return view('yacht.show', compact('yacht','yachtCreatedBy','yachtUpdatedBy'));
+    }
+
     public function validatedYachtData() {
 
         return request()->validate([

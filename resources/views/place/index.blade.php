@@ -8,12 +8,12 @@
 
 <div class="listing-wrapper">
     @if ($places != null)
-        <div class="listing-element header-element">
+        <div class="places-listing header-element">
             <span>Place</span>
             <span>Status</span>
         </div>
         @foreach ($places as $place)
-            <div class="listing-element">
+            <div class="places-listing">
                 <span>{{ $place->pier }}{{ $place->spot_number }}</span>
                 <span>
                     @if ($place->status == '1')

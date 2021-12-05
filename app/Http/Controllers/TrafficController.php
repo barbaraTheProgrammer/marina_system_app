@@ -20,7 +20,9 @@ class TrafficController extends Controller
 
 
     public function index() {
-        return view('traffic.index');
+        $traffic = DB::table('traffic')->get()->all();
+
+        return view('traffic.index', ['traffic' => $traffic]);
     }
 
     public function create() {
@@ -66,6 +68,14 @@ class TrafficController extends Controller
         ]);
 
         return redirect()->route('trafficIndex');
+    }
+
+    public function show($recordId) {
+        $trafficRecord = DB::table('traffic')->where('id', $recordId)->get()->first();
+        $recordCreatedBy = DB::table('users')->where('id', $trafficRecord->created_by)->get()->first()->name;
+        $recordUpdatedBy = DB::table('users')->where('id', $trafficRecord->updated_by)->get()->first()->name;
+        
+        return view('traffic.show', compact('trafficRecord','recordCreatedBy','recordUpdatedBy'));
     }
 
     public function checkIfExists() {

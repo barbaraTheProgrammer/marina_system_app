@@ -10041,7 +10041,7 @@ h3 {
 }
 
 .section-header {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .link-button,
@@ -10070,12 +10070,12 @@ button.link-button:hover {
 .listing-wrapper {
   width: 100%;
 }
-.listing-wrapper .listing-element {
+.listing-wrapper .places-listing {
   display: grid;
   grid-template-columns: 30% 30% 40%;
   font-size: 1rem;
 }
-.listing-wrapper .listing-element.header-element {
+.listing-wrapper .places-listing.header-element {
   font-size: 1.5rem;
 }
 
@@ -10087,4 +10087,16 @@ button.link-button:hover {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+.listing-wrapper {
+  width: 100%;
+}
+.listing-wrapper .traffic-listing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+  font-size: 1rem;
+}
+.listing-wrapper .traffic-listing.header-element {
+  font-size: 1.5rem;
 }
