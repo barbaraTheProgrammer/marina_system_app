@@ -33,6 +33,7 @@ Route::get('/yachts', 'App\Http\Controllers\YachtController@index')->name('yacht
 Route::get('/yachts/{yacht}', 'App\Http\Controllers\YachtController@show')->name('yachtShow');
 
 Route::get('/skippers', 'App\Http\Controllers\SkipperController@index')->name('skipperIndex');
+Route::get('/skippers/{skipper}', 'App\Http\Controllers\SkipperController@show')->name('skipperShow');
 
 Route::get('/traffic', 'App\Http\Controllers\TrafficController@index')->name('trafficIndex');
 Route::get('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');

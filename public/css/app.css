@@ -10100,3 +10100,27 @@ button.link-button:hover {
 .listing-wrapper .traffic-listing.header-element {
   font-size: 1.5rem;
 }
+
+.listing-wrapper {
+  width: 100%;
+}
+.listing-wrapper .yachts-listing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  font-size: 1rem;
+}
+.listing-wrapper .yachts-listing.header-element {
+  font-size: 1.5rem;
+}
+
+.listing-wrapper {
+  width: 100%;
+}
+.listing-wrapper .skippers-listing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  font-size: 1rem;
+}
+.listing-wrapper .skippers-listing.header-element {
+  font-size: 1.5rem;
+}

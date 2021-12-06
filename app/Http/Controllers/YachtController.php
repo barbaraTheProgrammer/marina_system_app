@@ -9,7 +9,9 @@ use Carbon\Carbon;
 class YachtController extends Controller
 {
     public function index() {
-        return view('yacht.index');
+        $yachts = DB::table('yachts')->get()->all();
+
+        return view('yacht.index', ['yachts' => $yachts]);
     }
 
     public function store($validatedData) {

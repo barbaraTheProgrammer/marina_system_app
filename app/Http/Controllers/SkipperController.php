@@ -9,7 +9,9 @@ use Carbon\Carbon;
 class SkipperController extends Controller
 {
     public function index() {
-        return view('skipper.index');
+        $skippers = DB::table('skippers')->get()->all();
+
+        return view('skipper.index', ['skippers' => $skippers]);
     }
 
     public function store($validatedData) {
@@ -32,6 +34,14 @@ class SkipperController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+    }
+
+    public function show($skipperId) {
+        $skipper = DB::table('skippers')->where('id', $skipperId)->get()->first();
+        $skipperCreatedBy = DB::table('users')->where('id', $skipper->created_by)->get()->first()->name;
+        $skipperUpdatedBy = DB::table('users')->where('id', $skipper->updated_by)->get()->first()->name;
+        
+        return view('skipper.show', compact('skipper','skipperCreatedBy','skipperUpdatedBy'));
     }
 
     public function validatedSkipperData() {

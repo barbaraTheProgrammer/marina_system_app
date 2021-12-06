@@ -9,8 +9,7 @@ use Carbon\Carbon;
 class PlaceController extends Controller
 {
     public function index() {
-        $placesCollection = DB::table('places')->get();
-        $places = $placesCollection->all();
+        $places = DB::table('places')->get()->all();
 
         return view('place.index', ['places' => $places]);
     }
