@@ -36,11 +36,33 @@ class YachtController extends Controller
     }
 
     public function show($yachtId) {
-        $yacht = DB::table('yachts')->where('id', $yachtId)->get()->first();
-        $yachtCreatedBy = DB::table('users')->where('id', $yacht->created_by)->get()->first()->name;
-        $yachtUpdatedBy = DB::table('users')->where('id', $yacht->updated_by)->get()->first()->name;
+        $yacht = DB::table('yachts')->where('id', $yachtId)->first();
+        $yachtCreatedBy = DB::table('users')->where('id', $yacht->created_by)->first()->name;
+        $yachtUpdatedBy = DB::table('users')->where('id', $yacht->updated_by)->first()->name;
         
         return view('yacht.show', compact('yacht','yachtCreatedBy','yachtUpdatedBy'));
+    }
+
+    public function update($yachtId ,$validatedData) {
+        //function need to make somehow history of jachts
+
+        $name = $validatedData['yachtName'];
+        $registrationNumber = $validatedData['yachtRegistrationNumber'];
+        $type = $validatedData['yachtType'];
+        $length = $validatedData['yachtLength'];
+        $owner = $validatedData['yachtOwner'];
+        $currUserId = $this->getCurrUserId();
+
+        DB::table('yachts')->where('id', $yachtId)->update([
+            'name' => $name,
+            'registration_number' => $registrationNumber,
+            'type' => $type, 'length' => $length,
+            'owner' => $owner,
+            'created_by' => $currUserId,
+            'updated_by' => $currUserId,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 
     public function validatedYachtData() {

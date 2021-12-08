@@ -3,7 +3,7 @@
 @section('content')
     <h1>Traffic in marina</h1>
 
-    <form action="{{ route('trafficCheckIfExists') }}" method="post">
+    <form action="{{ route('trafficCreate') }}" method="post">
         <div>
             <label for="registrationNumber">Registration number:</label>
             <input type="text" name="registrationNumber" value="{{ old("registrationNumber") }}">
@@ -28,18 +28,30 @@
     <div class="listing-wrapper">
         @if ($traffic != null)
             <div class="traffic-listing header-element">
-                <span>Place id</span>
-                <span>Yacht id</span>
+                <span>Place</span>
+                <span>Yacht</span>
                 <span>Coming</span>
                 <span>Leaving</span>
             </div>
             @foreach ($traffic as $trafficRecord)
             <div class="traffic-listing">
                 <div>
-                    <a href="{{ route('placeShow', $trafficRecord->place_id) }}">{{ $trafficRecord->place_id }}</a>
+                    <a href="{{ route('placeShow', $trafficRecord->place_id) }}">
+                        @foreach ($places as $place)
+                            @if ($place->id == $trafficRecord->place_id)
+                                {{ $place->pier }}{{ $place->spot_number }}
+                            @endif
+                        @endforeach
+                    </a>
                 </div>
                 <div>
-                    <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">{{ $trafficRecord->yacht_id }}</a>
+                    <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">
+                        @foreach ($yachts as $yacht)
+                            @if ($yacht->id == $trafficRecord->yacht_id)
+                                {{ $yacht->name }}
+                            @endif
+                        @endforeach
+                    </a>
                 </div>
                 <span>{{ $trafficRecord->date_of_come }}</span>
                 <span>{{ $trafficRecord->date_of_leave }}</span>

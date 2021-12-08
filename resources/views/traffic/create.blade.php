@@ -8,17 +8,14 @@
         <span class="section-header">About marina:</span>
 
         <div>
-            <label for="pier">Pier:</label>
-            <input type="text" name="pier" value="{{ old("pier") }}">
-            @error('pier')
-            <div class="error-message"> {{ $message }} </div>
-            @enderror
-        </div>
-
-        <div>
-            <label for="spotNumber">Spot number:</label>
-            <input type="number" name="spotNumber" value="{{ old("spotNumber") }}">
-            @error('spotNumber')
+            <label for="place">Place:</label>
+            <select name="place">
+                <option value=""> -- Select place -- </option>
+                @foreach ($avaliablePlaces as $place)
+                    <option value="{{ $place->id ?? old("place") }}">{{ $place->pier }}{{ $place->spot_number }}</option>
+                @endforeach
+            </select>
+            @error('place')
             <div class="error-message"> {{ $message }} </div>
             @enderror
         </div>
@@ -107,7 +104,7 @@
         </div>
         <div>
             <label for="skipperPersonalIdNumber">Personal ID number:</label>
-            <input type="text" name="skipperPersonalIdNumber" value="{{ $skipper->personal_id_nr ?? old("skipperPersonalIdNumber") }}">
+            <input type="text" name="skipperPersonalIdNumber" value="{{ $skipper->personal_id_number ?? old("skipperPersonalIdNumber") }}">
             @error('skipperPersonalIdNumber')
                 <div class="error-message"> {{ $message }} </div>
             @enderror

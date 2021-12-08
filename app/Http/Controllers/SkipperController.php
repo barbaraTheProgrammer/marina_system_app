@@ -37,15 +37,38 @@ class SkipperController extends Controller
     }
 
     public function show($skipperId) {
-        $skipper = DB::table('skippers')->where('id', $skipperId)->get()->first();
-        $skipperCreatedBy = DB::table('users')->where('id', $skipper->created_by)->get()->first()->name;
-        $skipperUpdatedBy = DB::table('users')->where('id', $skipper->updated_by)->get()->first()->name;
+        $skipper = DB::table('skippers')->where('id', $skipperId)->first();
+        $skipperCreatedBy = DB::table('users')->where('id', $skipper->created_by)->first()->name;
+        $skipperUpdatedBy = DB::table('users')->where('id', $skipper->updated_by)->first()->name;
         
         return view('skipper.show', compact('skipper','skipperCreatedBy','skipperUpdatedBy'));
     }
 
-    public function validatedSkipperData() {
+    public function update($skipperId ,$validatedData) {
+        //function need to make somehow history of jachts
         
+        $name = $validatedData['skipperName'];
+        $surname = $validatedData['skipperSurname'];
+        $personalIdNumber = $validatedData['skipperPersonalIdNumber'];
+        $country = $validatedData['skipperCountry'];
+        $email = $validatedData['skipperEmail'];
+        $currUserId = $this->getCurrUserId();
+
+        DB::table('skippers')->where('id', $skipperId)->update([
+            'name' => $name,
+            'surname' => $surname,
+            'personal_id_number' => $personalIdNumber,
+            'country' => $country,
+            'email' => $email,
+            'created_by' => $currUserId,
+            'updated_by' => $currUserId,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    }
+
+    public function validatedSkipperData() {
+
         return request()->validate([
             'skipperName' => 'required',
             'skipperSurname' => 'required',

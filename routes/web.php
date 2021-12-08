@@ -36,7 +36,6 @@ Route::get('/skippers', 'App\Http\Controllers\SkipperController@index')->name('s
 Route::get('/skippers/{skipper}', 'App\Http\Controllers\SkipperController@show')->name('skipperShow');
 
 Route::get('/traffic', 'App\Http\Controllers\TrafficController@index')->name('trafficIndex');
-Route::get('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');
+Route::post('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');
 Route::post('/traffic', 'App\Http\Controllers\TrafficController@store')->name('trafficStore');
 Route::get('/traffic/{record}', 'App\Http\Controllers\TrafficController@show')->name('trafficShow');
-Route::post('/traffic/create', 'App\Http\Controllers\TrafficController@checkIfExists')->name('trafficCheckIfExists');

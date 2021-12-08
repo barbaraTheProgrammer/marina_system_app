@@ -40,15 +40,15 @@ class PlaceController extends Controller
     }
 
     public function show($placeId) {
-        $place = DB::table('places')->where('id', $placeId)->get()->first();
-        $placeCreatedBy = DB::table('users')->where('id', $place->created_by)->get()->first()->name;
-        $placeUpdatedBy = DB::table('users')->where('id', $place->updated_by)->get()->first()->name;
+        $place = DB::table('places')->where('id', $placeId)->first();
+        $placeCreatedBy = DB::table('users')->where('id', $place->created_by)->first()->name;
+        $placeUpdatedBy = DB::table('users')->where('id', $place->updated_by)->first()->name;
         
         return view('place.show', compact('place','placeCreatedBy','placeUpdatedBy'));
     }
 
     public function edit($placeId) {
-        $place = DB::table('places')->where('id', $placeId)->get()->first();
+        $place = DB::table('places')->where('id', $placeId)->first();
 
         return view('place.edit', compact('place'));
     }

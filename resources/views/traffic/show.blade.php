@@ -18,12 +18,12 @@
                 <span>Date of leave: {{ $trafficRecord->date_of_leave }}</span>
             </div>
             <div>
-                <span>Yacht id:</span>
-                <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">{{ $trafficRecord->yacht_id }}</a>
+                <span>Yacht:</span>
+                <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">{{ $yachtName }}</a>
             </div>
             <div>
-                <span>Skipper id:</span>
-                <a href="{{ route('skipperShow', $trafficRecord->skipper_id) }}">{{ $trafficRecord->skipper_id }}</a>
+                <span>Skipper:</span>
+                <a href="{{ route('skipperShow', $trafficRecord->skipper_id) }}">{{ $skipperName }} {{ $skipperSurname }}</a>
             </div>
             <div>
                 <span>Created by: {{ $recordCreatedBy }}</span>
