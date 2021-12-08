@@ -8,8 +8,8 @@
         
         <div class="details-wrapper">
             <div>
-                <span>Place id:</span>
-                <a href="{{ route('placeShow', $trafficRecord->place_id) }}">{{ $trafficRecord->place_id }}</a>
+                <span>Place:</span>
+                <a href="{{ route('placeShow', $trafficRecord->place_id) }}">{{ $place }}</a>
             </div>
             <div>
                 <span>Date of come: {{ $trafficRecord->date_of_come }}</span>
@@ -35,15 +35,9 @@
                 <span>Last update: {{ $trafficRecord->updated_at }} by: {{ $recordUpdatedBy }}</span>
             </div>
         
-            {{-- <div class="action-buttons">
-                <a class="link-button" href="{{ route('placeEdit', $place->id) }}">edit place</a>
-        
-                <form action="{{ route('placeDestroy', $place->id) }}" method="post" onclick="return confirm('Are you sure?')">
-                    @method('DELETE')
-                    @csrf
-                    <button class="link-button">delete</button>
-                </form>
-            </div> --}}
+            <div class="action-buttons">
+                <a class="link-button" href="{{ route('trafficArchive', $trafficRecord->id) }}">archive record</a>
+            </div>
         </div>
     @endif
 @endsection

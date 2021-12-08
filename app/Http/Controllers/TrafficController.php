@@ -28,20 +28,21 @@ class TrafficController extends Controller
     }
 
     public function create() {
-        $validatedData = request()->validate([
-            'registrationNumber' => 'required',
-            'skipperEmail' => 'required|email'
-        ]);
+        // $validatedData = request()->validate([
+        //     'registrationNumber' => 'required',
+        //     'skipperEmail' => 'required|email'
+        // ]);
 
-        $registrationNumber = $validatedData['registrationNumber'];
-        $skipperEmail = $validatedData['skipperEmail'];
+        // $registrationNumber = $validatedData['registrationNumber'];
+        // $skipperEmail = $validatedData['skipperEmail'];
 
-        $yacht = DB::table('yachts')->where('registration_number', $registrationNumber)->first();
-        $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
+        // $yacht = DB::table('yachts')->where('registration_number', $registrationNumber)->first();
+        // $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
 
         $avaliablePlaces = DB::table('places')->where('status', '1')->get()->all();
 
-        return view('traffic.create', ['yacht' => $yacht, 'skipper' => $skipper, 'registrationNumber' => $registrationNumber, 'skipperEmail' => $skipperEmail, 'avaliablePlaces' => $avaliablePlaces]);
+        // return view('traffic.create', ['yacht' => $yacht, 'skipper' => $skipper, 'registrationNumber' => $registrationNumber, 'skipperEmail' => $skipperEmail, 'avaliablePlaces' => $avaliablePlaces]);
+        return view('traffic.create', ['avaliablePlaces' => $avaliablePlaces]);
     }
 
     public function store() {
@@ -67,14 +68,10 @@ class TrafficController extends Controller
             $this->SkipperController->update($skipper->id ,$validatedSkipperData);
         }
 
-        $pier = $validatedMarinaData['pier'];
-        $spotNumber = $validatedMarinaData['spotNumber'];
-        
-        $place = DB::table('places')->where('pier', $pier)->where('spot_number', $spotNumber)->first();
         $yacht = DB::table('yachts')->where('registration_number', $yachtRegistrationNumber)->first();
         $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
 
-        $placeId = $place->id;
+        $placeId = $validatedMarinaData['place'];
         $dateOfCome = $validatedMarinaData['dateOfCome'];
         $dateOfLeave = $validatedMarinaData['dateOfLeave'];
         $yachtId = $yacht->id;
@@ -98,13 +95,58 @@ class TrafficController extends Controller
 
     public function show($recordId) {
         $trafficRecord = DB::table('traffic')->where('id', $recordId)->first();
+        $pier = DB::table('places')->where('id', $trafficRecord->place_id)->first()->pier;
+        $spotNumber = DB::table('places')->where('id', $trafficRecord->place_id)->first()->spot_number;
+
+        $place = $pier.$spotNumber;
         $yachtName = DB::table('yachts')->where('id', $trafficRecord->yacht_id)->first()->name;
         $skipperName = DB::table('skippers')->where('id', $trafficRecord->skipper_id)->first()->name;
         $skipperSurname = DB::table('skippers')->where('id', $trafficRecord->skipper_id)->first()->surname;
         $recordCreatedBy = DB::table('users')->where('id', $trafficRecord->created_by)->first()->name;
         $recordUpdatedBy = DB::table('users')->where('id', $trafficRecord->updated_by)->first()->name;
         
-        return view('traffic.show', compact('trafficRecord','recordCreatedBy','recordUpdatedBy','yachtName','skipperName','skipperSurname'));
+        return view('traffic.show', compact('trafficRecord','recordCreatedBy','recordUpdatedBy','place','yachtName','skipperName','skipperSurname'));
+    }
+
+    public function archive($recordId) {
+        $recordToArchive = DB::table('traffic')->where('id', $recordId)->first();
+        $place = DB::table('places')->where('id',$recordToArchive->place_id)->first();
+        $yacht = DB::table('yachts')->where('id',$recordToArchive->yacht_id)->first();
+        $skipper = DB::table('skippers')->where('id',$recordToArchive->skipper_id)->first();
+        $currUserId = $this->getCurrUserId();
+        
+        DB::table('traffic_history')->insertGetId([
+            'pier' => $place->pier,
+            'spot_number' => $place->spot_number,
+            'date_of_come' => $recordToArchive->date_of_come,
+            'date_of_leave' => $recordToArchive->date_of_leave,
+            'yacht_name' => $yacht->name,
+            'yacht_registration_number' => $yacht->registration_number,
+            'yacht_type' => $yacht->type, 
+            'yacht_length' => $yacht->length,
+            'yacht_owner' => $yacht->owner,
+            'skipper_name' => $skipper->name,
+            'skipper_surname' => $skipper->surname,
+            'skipper_personal_id_number' => $skipper->personal_id_number,
+            'skipper_country' => $skipper->country,
+            'skipper_email' => $skipper->email,
+            'created_by' => $recordToArchive->created_by,
+            'updated_by' => $recordToArchive->updated_by,
+            'archived_by' => $currUserId,
+            'archived_at' => Carbon::now(),
+            'created_at' => $recordToArchive->created_at,
+            'updated_at' => $recordToArchive->updated_at,
+        ]);
+
+        DB::table('traffic')->where('id', $recordId)->delete();
+
+        return redirect()->route('trafficIndex'); 
+    }
+
+    public function showHistory() {
+        $archivedRecords = DB::table('traffic_history')->get()->all();
+
+        return view('traffic.history', compact('archivedRecords'));
     }
 
     public function validatedMarinaData() {

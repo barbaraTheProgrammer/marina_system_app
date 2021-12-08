@@ -3,7 +3,7 @@
 @section('content')
     <h1>Traffic in marina</h1>
 
-    <form action="{{ route('trafficCreate') }}" method="post">
+    {{-- <form action="{{ route('trafficCreate') }}" method="post">
         <div>
             <label for="registrationNumber">Registration number:</label>
             <input type="text" name="registrationNumber" value="{{ old("registrationNumber") }}">
@@ -23,17 +23,32 @@
         </div>
     
         @csrf
+    </form> --}}
+
+    <form action="{{ route('trafficCreate') }}" method="post">
+        <div>
+            <button class="link-button">new coming</button>
+        </div>
+    
+        @csrf
     </form>
 
+    <div>
+        <a href="{{ route('trafficIndex') }}" class="button">current state</a>
+        <a href="{{ route('trafficShowHistory') }}" class="button">show history</a>
+    </div>
+    <div>
+        <h2>Current state</h2>
+    </div>
+
     <div class="listing-wrapper">
-        @if ($traffic != null)
-            <div class="traffic-listing header-element">
-                <span>Place</span>
-                <span>Yacht</span>
-                <span>Coming</span>
-                <span>Leaving</span>
-            </div>
-            @foreach ($traffic as $trafficRecord)
+        <div class="traffic-listing header-element">
+            <span>Place</span>
+            <span>Yacht</span>
+            <span>Coming</span>
+            <span>Leaving</span>
+        </div>
+        @forelse ($traffic as $trafficRecord)
             <div class="traffic-listing">
                 <div>
                     <a href="{{ route('placeShow', $trafficRecord->place_id) }}">
@@ -59,10 +74,9 @@
                     <a href="{{ route('trafficShow', $trafficRecord->id) }}">show details</a>
                 </div>
             </div>
-        @endforeach     
-        @else
-            <h2>There are no reacords in database</h2>
-        @endif
+        @empty
+            <h5 class="info-message">There are no reacords in database</h5 class="info-message">
+        @endforelse   
     </div>
 
 @endsection

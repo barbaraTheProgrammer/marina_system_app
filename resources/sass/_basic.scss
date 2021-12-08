@@ -2,6 +2,21 @@
     font-size: 1.4rem;
 }
 
+.button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: $oceanBlue;
+    color: $warmWhite;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+        background-color: $lightBlue;
+        color: $warmWhite;
+    }
+}
+
 .link-button,
 button.link-button {
     display: inline-block;

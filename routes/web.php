@@ -38,4 +38,6 @@ Route::get('/skippers/{skipper}', 'App\Http\Controllers\SkipperController@show')
 Route::get('/traffic', 'App\Http\Controllers\TrafficController@index')->name('trafficIndex');
 Route::post('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');
 Route::post('/traffic', 'App\Http\Controllers\TrafficController@store')->name('trafficStore');
+Route::get('/traffic/history', 'App\Http\Controllers\TrafficController@showHistory')->name('trafficShowHistory');
 Route::get('/traffic/{record}', 'App\Http\Controllers\TrafficController@show')->name('trafficShow');
+Route::get('/traffic/{record}/archive', 'App\Http\Controllers\TrafficController@archive')->name('trafficArchive');

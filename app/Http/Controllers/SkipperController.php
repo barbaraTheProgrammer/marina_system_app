@@ -45,8 +45,6 @@ class SkipperController extends Controller
     }
 
     public function update($skipperId ,$validatedData) {
-        //function need to make somehow history of jachts
-        
         $name = $validatedData['skipperName'];
         $surname = $validatedData['skipperSurname'];
         $personalIdNumber = $validatedData['skipperPersonalIdNumber'];

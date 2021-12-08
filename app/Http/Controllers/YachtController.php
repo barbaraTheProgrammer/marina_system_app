@@ -44,8 +44,6 @@ class YachtController extends Controller
     }
 
     public function update($yachtId ,$validatedData) {
-        //function need to make somehow history of jachts
-
         $name = $validatedData['yachtName'];
         $registrationNumber = $validatedData['yachtRegistrationNumber'];
         $type = $validatedData['yachtType'];

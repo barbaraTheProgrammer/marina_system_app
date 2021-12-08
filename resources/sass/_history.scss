@@ -1,0 +1,17 @@
+.listing-wrapper {
+    width: 100%;
+
+    .history-listing  {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        font-size: 1rem;
+
+        span {
+            padding: 2px;
+        }
+
+        .listing-column {
+            border: 1px solid $lightBlue;
+        }
+    }
+}

@@ -10044,6 +10044,20 @@ h3 {
   font-size: 1.4rem;
 }
 
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #31708E;
+  color: #F7F9FB;
+  border: none;
+  cursor: pointer;
+}
+.button:hover {
+  text-decoration: none;
+  background-color: #8FC1E3;
+  color: #F7F9FB;
+}
+
 .link-button,
 button.link-button {
   display: inline-block;
@@ -10123,4 +10137,19 @@ button.link-button:hover {
 }
 .listing-wrapper .skippers-listing.header-element {
   font-size: 1.5rem;
+}
+
+.listing-wrapper {
+  width: 100%;
+}
+.listing-wrapper .history-listing {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  font-size: 1rem;
+}
+.listing-wrapper .history-listing span {
+  padding: 2px;
+}
+.listing-wrapper .history-listing .listing-column {
+  border: 1px solid #8FC1E3;
 }

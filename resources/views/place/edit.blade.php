@@ -26,10 +26,18 @@
 
     <div>
         <label for="status">Status</label>
-            <input type="radio" value="1" name="status" checked/>
+            @if ($place->status == '1')
+                <input type="radio" value="1" name="status" checked/>
+            @else
+                <input type="radio" value="1" name="status"/>
+            @endif
             <label>active</label>
             
-            <input type="radio" value="0" name="status"/>
+            @if ($place->status == '')
+                <input type="radio" value="0" name="status" checked/>
+            @else
+                <input type="radio" value="0" name="status"/>
+            @endif
             <label>inactive</label>
     </div>
 
