@@ -10051,6 +10051,7 @@ h3 {
   color: #F7F9FB;
   border: none;
   cursor: pointer;
+  margin-top: 10px;
 }
 .button:hover {
   text-decoration: none;

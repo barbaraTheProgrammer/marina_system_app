@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>Places at marina</h1>
+<p class="error-message">{{ request()->get('message') }}</p>
 
 <a class="link-button" href="{{ route('placeCreate') }}">create place</a>
 

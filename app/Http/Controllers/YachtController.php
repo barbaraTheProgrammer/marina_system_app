@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class YachtController extends Controller
 {
     public function index() {
-        $yachts = DB::table('yachts')->get()->all();
+        $yachts = DB::table('yachts')->orderBy('name', 'asc')->get()->all();
 
         return view('yacht.index', ['yachts' => $yachts]);
     }
@@ -37,8 +37,8 @@ class YachtController extends Controller
 
     public function show($yachtId) {
         $yacht = DB::table('yachts')->where('id', $yachtId)->first();
-        $yachtCreatedBy = DB::table('users')->where('id', $yacht->created_by)->first()->name;
-        $yachtUpdatedBy = DB::table('users')->where('id', $yacht->updated_by)->first()->name;
+        $yachtCreatedBy = DB::table('users')->select('name')->where('id', $yacht->created_by)->first();
+        $yachtUpdatedBy = DB::table('users')->select('name')->where('id', $yacht->updated_by)->first();
         
         return view('yacht.show', compact('yacht','yachtCreatedBy','yachtUpdatedBy'));
     }

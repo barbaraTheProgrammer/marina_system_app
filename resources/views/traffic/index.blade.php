@@ -25,7 +25,7 @@
         @csrf
     </form> --}}
 
-    <form action="{{ route('trafficCreate') }}" method="post">
+    <form action="{{ route('trafficCreate') }}" method="get">
         <div>
             <button class="link-button">new coming</button>
         </div>
@@ -34,10 +34,7 @@
     </form>
 
     <div>
-        <a href="{{ route('trafficIndex') }}" class="button">current state</a>
-        <a href="{{ route('trafficShowHistory') }}" class="button">show history</a>
-    </div>
-    <div>
+        <a href="{{ route('trafficShowHistory', ['filter' => 'all']) }}" class="button">show history</a>
         <h2>Current state</h2>
     </div>
 

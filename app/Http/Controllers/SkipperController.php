@@ -9,7 +9,11 @@ use Carbon\Carbon;
 class SkipperController extends Controller
 {
     public function index() {
-        $skippers = DB::table('skippers')->get()->all();
+        $skippers = DB::table('skippers')
+            ->orderBy('name', 'asc')
+            ->orderBy('surname', 'asc')
+            ->get()
+            ->all();
 
         return view('skipper.index', ['skippers' => $skippers]);
     }
@@ -38,8 +42,8 @@ class SkipperController extends Controller
 
     public function show($skipperId) {
         $skipper = DB::table('skippers')->where('id', $skipperId)->first();
-        $skipperCreatedBy = DB::table('users')->where('id', $skipper->created_by)->first()->name;
-        $skipperUpdatedBy = DB::table('users')->where('id', $skipper->updated_by)->first()->name;
+        $skipperCreatedBy = DB::table('users')->select('name')->where('id', $skipper->created_by)->first();
+        $skipperUpdatedBy = DB::table('users')->select('name')->where('id', $skipper->updated_by)->first();
         
         return view('skipper.show', compact('skipper','skipperCreatedBy','skipperUpdatedBy'));
     }

@@ -25,13 +25,13 @@
             </span>
         </div>
         <div>
-            <span>Created by: {{ $placeCreatedBy }}</span>
+            <span>Created by: {{ $placeCreatedBy->name }}</span>
         </div>
         <div>
             <span>Created at: {{ $place->created_at }}</span>
         </div>
         <div>
-            <span>Last update: {{ $place->updated_at }} by: {{ $placeUpdatedBy }}</span>
+            <span>Last update: {{ $place->updated_at }} by: {{ $placeUpdatedBy->name }}</span>
         </div>
     
         <div class="action-buttons">

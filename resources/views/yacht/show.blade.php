@@ -23,13 +23,13 @@
             <span>Owner: {{ $yacht->owner }}</span>
         </div>
         <div>
-            <span>Created by: {{ $yachtCreatedBy }}</span>
+            <span>Created by: {{ $yachtCreatedBy->name }}</span>
         </div>
         <div>
             <span>Created at: {{ $yacht->created_at }}</span>
         </div>
         <div>
-            <span>Last update: {{ $yacht->updated_at }} by: {{ $yachtUpdatedBy }}</span>
+            <span>Last update: {{ $yacht->updated_at }} by: {{ $yachtUpdatedBy->name }}</span>
         </div>
     
         {{-- <div class="action-buttons">

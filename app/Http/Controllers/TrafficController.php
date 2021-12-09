@@ -39,7 +39,17 @@ class TrafficController extends Controller
         // $yacht = DB::table('yachts')->where('registration_number', $registrationNumber)->first();
         // $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
 
-        $avaliablePlaces = DB::table('places')->where('status', '1')->get()->all();
+        $avaliablePlaces = DB::table('places')
+            ->where('status', '1')
+            ->whereNotExists( function ($query) {
+                $query->select(DB::raw(1))
+                ->from('traffic')
+                ->whereColumn('places.id', 'traffic.place_id');
+            })
+            ->orderBy('pier', 'asc')
+            ->orderBy('spot_number','asc')
+            ->get()
+            ->all();
 
         // return view('traffic.create', ['yacht' => $yacht, 'skipper' => $skipper, 'registrationNumber' => $registrationNumber, 'skipperEmail' => $skipperEmail, 'avaliablePlaces' => $avaliablePlaces]);
         return view('traffic.create', ['avaliablePlaces' => $avaliablePlaces]);
@@ -99,11 +109,11 @@ class TrafficController extends Controller
         $spotNumber = DB::table('places')->where('id', $trafficRecord->place_id)->first()->spot_number;
 
         $place = $pier.$spotNumber;
-        $yachtName = DB::table('yachts')->where('id', $trafficRecord->yacht_id)->first()->name;
-        $skipperName = DB::table('skippers')->where('id', $trafficRecord->skipper_id)->first()->name;
-        $skipperSurname = DB::table('skippers')->where('id', $trafficRecord->skipper_id)->first()->surname;
-        $recordCreatedBy = DB::table('users')->where('id', $trafficRecord->created_by)->first()->name;
-        $recordUpdatedBy = DB::table('users')->where('id', $trafficRecord->updated_by)->first()->name;
+        $yachtName = DB::table('yachts')->select('name')->where('id', $trafficRecord->yacht_id)->first();
+        $skipperName = DB::table('skippers')->select('name')->where('id', $trafficRecord->skipper_id)->first();
+        $skipperSurname = DB::table('skippers')->select('surname')->where('id', $trafficRecord->skipper_id)->first();
+        $recordCreatedBy = DB::table('users')->select('name')->where('id', $trafficRecord->created_by)->first();
+        $recordUpdatedBy = DB::table('users')->select('name')->where('id', $trafficRecord->updated_by)->first();
         
         return view('traffic.show', compact('trafficRecord','recordCreatedBy','recordUpdatedBy','place','yachtName','skipperName','skipperSurname'));
     }

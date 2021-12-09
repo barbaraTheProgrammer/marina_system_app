@@ -9,7 +9,11 @@ use Carbon\Carbon;
 class PlaceController extends Controller
 {
     public function index() {
-        $places = DB::table('places')->get()->all();
+        $places = DB::table('places')
+            ->orderBy('pier', 'asc')
+            ->orderBy('spot_number','asc')
+            ->get()
+            ->all();
 
         return view('place.index', ['places' => $places]);
     }
@@ -41,8 +45,9 @@ class PlaceController extends Controller
 
     public function show($placeId) {
         $place = DB::table('places')->where('id', $placeId)->first();
-        $placeCreatedBy = DB::table('users')->where('id', $place->created_by)->first()->name;
-        $placeUpdatedBy = DB::table('users')->where('id', $place->updated_by)->first()->name;
+
+        $placeCreatedBy = DB::table('users')->select('name')->where('id', $place->created_by)->first();
+        $placeUpdatedBy = DB::table('users')->select('name')->where('id', $place->updated_by)->first();
         
         return view('place.show', compact('place','placeCreatedBy','placeUpdatedBy'));
     }
@@ -73,9 +78,15 @@ class PlaceController extends Controller
     }
 
     public function destroy($placeId) {
-        DB::table('places')->where('id', $placeId)->delete();
+        $connectedRecord = DB::table('traffic')->select('id')->where('id', $placeId)->first();
+        $message = "Place is currently in use. Can not delete.";
 
-        return redirect()->route('placeIndex');
+        if ($connectedRecord == null) {
+            DB::table('places')->where('id', $placeId)->delete();
+            return redirect()->route('placeIndex');
+        } else {
+            return redirect()->route('placeIndex', ['message' => $message]);
+        }
     }
 
     private function validatedPlaceData() {

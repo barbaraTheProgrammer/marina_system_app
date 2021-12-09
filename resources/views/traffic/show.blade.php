@@ -19,24 +19,24 @@
             </div>
             <div>
                 <span>Yacht:</span>
-                <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">{{ $yachtName }}</a>
+                <a href="{{ route('yachtShow', $trafficRecord->yacht_id) }}">{{ $yachtName->name }}</a>
             </div>
             <div>
                 <span>Skipper:</span>
-                <a href="{{ route('skipperShow', $trafficRecord->skipper_id) }}">{{ $skipperName }} {{ $skipperSurname }}</a>
+                <a href="{{ route('skipperShow', $trafficRecord->skipper_id) }}">{{ $skipperName->name }} {{ $skipperSurname->surname }}</a>
             </div>
             <div>
-                <span>Created by: {{ $recordCreatedBy }}</span>
+                <span>Created by: {{ $recordCreatedBy->name }}</span>
             </div>
             <div>
                 <span>Created at: {{ $trafficRecord->created_at }}</span>
             </div>
             <div>
-                <span>Last update: {{ $trafficRecord->updated_at }} by: {{ $recordUpdatedBy }}</span>
+                <span>Last update: {{ $trafficRecord->updated_at }} by: {{ $recordUpdatedBy->name }}</span>
             </div>
         
             <div class="action-buttons">
-                <a class="link-button" href="{{ route('trafficArchive', $trafficRecord->id) }}">archive record</a>
+                <a class="link-button" href="{{ route('trafficArchive', $trafficRecord->id) }}" onclick="return confirm('Are you sure?')">archive record</a>
             </div>
         </div>
     @endif

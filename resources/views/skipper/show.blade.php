@@ -23,13 +23,13 @@
                 <span>Email: {{ $skipper->email }}</span>
             </div>
             <div>
-                <span>Created by: {{ $skipperCreatedBy }}</span>
+                <span>Created by: {{ $skipperCreatedBy->name }}</span>
             </div>
             <div>
                 <span>Created at: {{ $skipper->created_at }}</span>
             </div>
             <div>
-                <span>Last update: {{ $skipper->updated_at }} by: {{ $skipperUpdatedBy }}</span>
+                <span>Last update: {{ $skipper->updated_at }} by: {{ $skipperUpdatedBy->name }}</span>
             </div>
         
             {{-- <div class="action-buttons">

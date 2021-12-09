@@ -12,7 +12,7 @@
             <select name="place">
                 <option value=""> -- Select place -- </option>
                 @foreach ($avaliablePlaces as $place)
-                    <option value="{{ $place->id ?? old("place") }}">{{ $place->pier }}{{ $place->spot_number }}</option>
+                    <option value="{{ $place->id}}">{{ $place->pier }}{{ $place->spot_number }}</option>
                 @endforeach
             </select>
             @error('place')

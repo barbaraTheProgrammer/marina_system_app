@@ -2,10 +2,7 @@
 
 @section('content')
     <div>
-        <a href="{{ route('trafficIndex') }}" class="button">current state</a>
-        <a href="{{ route('trafficShowHistory') }}" class="button">show history</a>
-    </div>
-    <div>
+        <a href="{{ route('trafficIndex') }}" class="button">show current state</a>
         <h2>History</h2>
     </div>
 
