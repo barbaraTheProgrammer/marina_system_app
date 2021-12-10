@@ -41,3 +41,8 @@ Route::post('/traffic', 'App\Http\Controllers\TrafficController@store')->name('t
 Route::get('/traffic/{record}', 'App\Http\Controllers\TrafficController@show')->name('trafficShow');
 Route::get('/traffic/history/{filter}', 'App\Http\Controllers\TrafficController@showHistory')->name('trafficShowHistory');
 Route::get('/traffic/{record}/archive', 'App\Http\Controllers\TrafficController@archive')->name('trafficArchive');
+
+Route::get('/reservations', 'App\Http\Controllers\ReservationController@index')->name('reservationIndex');
+Route::post('/reservations/check-avaliable-places', 'App\Http\Controllers\ReservationController@checkAvaliablePlaces')->name('reservationCheckAvaliablePlaces');
+Route::get('/reservations/create', 'App\Http\Controllers\ReservationController@create')->name('reservationCreate');
+Route::post('/reservations', 'App\Http\Controllers\ReservationController@store')->name('reservationStore');
