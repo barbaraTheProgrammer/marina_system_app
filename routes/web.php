@@ -44,5 +44,6 @@ Route::get('/traffic/{record}/archive', 'App\Http\Controllers\TrafficController@
 
 Route::get('/reservations', 'App\Http\Controllers\ReservationController@index')->name('reservationIndex');
 Route::post('/reservations/check-avaliable-places', 'App\Http\Controllers\ReservationController@checkAvaliablePlaces')->name('reservationCheckAvaliablePlaces');
-Route::get('/reservations/create', 'App\Http\Controllers\ReservationController@create')->name('reservationCreate');
+Route::get('/reservations/create/{place}/{dateOfCome}/{dateOfLeave}', 'App\Http\Controllers\ReservationController@create')->name('reservationCreate');
 Route::post('/reservations', 'App\Http\Controllers\ReservationController@store')->name('reservationStore');
+Route::get('/reservations/{record}', 'App\Http\Controllers\ReservationController@show')->name('reservationShow');

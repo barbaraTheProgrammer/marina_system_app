@@ -69,7 +69,7 @@ class YachtController extends Controller
             'yachtName' => 'required',
             'yachtRegistrationNumber' => 'required',
             'yachtType' => 'required',
-            'yachtLength' => 'required|min:0',
+            'yachtLength' => 'required|numeric|min:0',
             'yachtOwner' => 'required'
         ]);
     }

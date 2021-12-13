@@ -26,8 +26,36 @@
     </form>
 
     <div class="listing-wrapper">
-        <div class="reservation-listing">
-
+        <div class="reservation-listing header-element">
+            <span>Place</span>
+            <span>Come</span>
+            <span>Leave</span>
+            <span>Yacht</span>
+            <span>Y. Length [m]</span>
+            <span>Skipper surname</span>
         </div>
+        @forelse ($reservations as $reservation)
+            <div class="reservation-listing">
+                <div>
+                    <a href="{{ route('placeShow', $reservation->place_id) }}">
+                        @foreach ($places as $place)
+                            @if ($place->id == $reservation->place_id)
+                                {{ $place->pier }}{{ $place->spot_number }}
+                            @endif
+                        @endforeach
+                    </a>
+                </div>
+                <div>{{ $reservation->date_of_come }}</div>
+                <div>{{ $reservation->date_of_leave }}</div>
+                <div>{{ $reservation->yacht_name }}</div>
+                <div>{{ $reservation->yacht_length }}</div>
+                <div>{{ $reservation->skipper_surname }}</div>
+                <div>
+                    <a href="{{ route('reservationShow', $reservation->id) }}">show details</a>
+                </div>
+            </div>
+        @empty
+            <h5 class="info-message">There are no records in database</h5 class="info-message">
+        @endforelse       
     </div>
 @endsection

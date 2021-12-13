@@ -68,7 +68,8 @@
 
         <div>
             <label for="yachtLength">Length:</label>
-            <input type="text" name="yachtLength" value="{{ $yacht->length ?? old("yachtLength")}}">         
+            <input type="text" name="yachtLength" value="{{ $yacht->length ?? old("yachtLength")}}">
+            <span class="info-message">*If length is not integer use dot (.) insted of comma (,) to write it down</span>         
             @error('yachtLength')
                 <div class="error-message"> {{ $message }} </div>
             @enderror

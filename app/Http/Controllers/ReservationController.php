@@ -9,7 +9,13 @@ use Carbon\Carbon;
 class ReservationController extends Controller
 {
     public function index() {
-        return view('reservation.index');
+        $reservations = DB::table('reservations')
+            ->orderBy('date_of_come')
+            ->get()->all();
+
+        $places = DB::table('places')->get()->all();
+
+        return view('reservation.index', compact('reservations','places'));
     }
 
     public function checkAvaliablePlaces() {
@@ -45,11 +51,49 @@ class ReservationController extends Controller
         return view('reservation.avaliable-places', compact('avaliablePlaces', 'checkingDateOfCome', 'checkingDateOfLeave'));
     }
 
-    public function create() {
-        return view('reservation.create');
+    public function create($placeId, $dateOfCome, $dateOfLeave) {
+        $place = DB::table('places')->where('id', $placeId)->first();
+
+        return view('reservation.create', compact('place', 'dateOfCome', 'dateOfLeave'));
     }
 
     public function store() {
-        return view('reservation.index');
+        $validatedData = request()->validate([
+            'skipperName' => 'required',
+            'skipperSurname' => 'required',
+            'skipperEmail' => 'required|email',
+            'yachtName' => 'required',
+            'yachtLength' => 'required|numeric|min:0'
+        ]);
+
+        DB::table('reservations')->insertGetId([
+            'place_id' => request()->placeId,
+            'date_of_come' => request()->dateOfCome,
+            'date_of_leave' => request()->dateOfLeave,
+            'skipper_name' => $validatedData['skipperName'],
+            'skipper_surname' => $validatedData['skipperSurname'],
+            'skipper_email' => $validatedData['skipperEmail'],
+            'yacht_name' => $validatedData['yachtName'],
+            'yacht_length' => $validatedData['yachtLength'],
+            'created_by' => $this->getCurrUserId(),
+            'updated_by' => $this->getCurrUserId(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect()->route('reservationIndex');
+    }
+
+    public function show($recordId) {
+        $reservation = DB::table('reservations')->where('id', $recordId)->first();
+        $places = DB::table('places')->get()->all();
+        $recordCreatedBy = DB::table('users')->select('name')->where('id', $reservation->created_by)->first();
+        $recordUpdatedBy = DB::table('users')->select('name')->where('id', $reservation->updated_by)->first();
+
+        return view('reservation.show', compact('reservation', 'places', 'recordCreatedBy', 'recordUpdatedBy'));
+    }
+
+    private function getCurrUserId() {
+        return auth()->user()->id;
     }
 }

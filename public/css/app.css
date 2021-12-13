@@ -10154,3 +10154,15 @@ button.link-button:hover {
 .listing-wrapper .history-listing .listing-column {
   border: 1px solid #8FC1E3;
 }
+
+.listing-wrapper {
+  width: 100%;
+}
+.listing-wrapper .reservation-listing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  font-size: 1rem;
+}
+.listing-wrapper .reservation-listing.header-element {
+  font-size: 1.5rem;
+}

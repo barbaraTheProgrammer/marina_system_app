@@ -8,7 +8,7 @@
         @forelse ($avaliablePlaces as $avaliablePlace)
             <div>
                 <span>{{ $avaliablePlace->pier }}{{ $avaliablePlace->spot_number }}</span>
-                <a href="{{ route('reservationCreate', ['place'=> $avaliablePlace->id]) }}" class="button">make reservation</a>
+                <a href="{{ route('reservationCreate', ['place' => $avaliablePlace->id, 'dateOfCome' => $checkingDateOfCome, 'dateOfLeave' => $checkingDateOfLeave]) }}" class="button">make reservation</a>
             </div>
         @empty
             <h2>There are no free places in these days</h2>
