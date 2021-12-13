@@ -65,6 +65,8 @@ class ReservationController extends Controller
             'yachtName' => 'required',
             'yachtLength' => 'required|numeric|min:0'
         ]);
+        $now = Carbon::now();
+        $currUser = $his->getCurrUserId();
 
         DB::table('reservations')->insertGetId([
             'place_id' => request()->placeId,
@@ -75,10 +77,10 @@ class ReservationController extends Controller
             'skipper_email' => $validatedData['skipperEmail'],
             'yacht_name' => $validatedData['yachtName'],
             'yacht_length' => $validatedData['yachtLength'],
-            'created_by' => $this->getCurrUserId(),
-            'updated_by' => $this->getCurrUserId(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_by' => $currUser,
+            'updated_by' => $currUser,
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
 
         return redirect()->route('reservationIndex');

@@ -24,20 +24,17 @@ class PlaceController extends Controller
 
     public function store() {
         $validatedData = $this->validatedPlaceData();
-
-        $pier = $validatedData['pier'];
-        $spotNumber = $validatedData['spotNumber'];
-        $status = $validatedData['status'];
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
             
         DB::table('places')->insertGetId([
-            'pier' => $pier,
-            'spot_number' => $spotNumber,
-            'status' => $status,
+            'pier' => $validatedData['pier'],
+            'spot_number' => $validatedData['spotNumber'],
+            'status' => $validatedData['status'],
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
 
         return redirect()->route('placeIndex');
@@ -60,18 +57,15 @@ class PlaceController extends Controller
 
     public function update($placeId) {
         $validatedData = $this->validatedPlaceData();
-
-        $pier = $validatedData['pier'];
-        $spotNumber = $validatedData['spotNumber'];
-        $status = $validatedData['status'];
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();    
 
         DB::table('places')->where('id', $placeId)->update([
-            'pier' => $pier,
-            'spot_number' => $spotNumber,
-            'status' => $status,
+            'pier' => $validatedData['pier'],
+            'spot_number' => $validatedData['spotNumber'],
+            'status' => $validatedData['status'],
             'updated_by' => $currUserId,
-            'updated_at' => Carbon::now()
+            'updated_at' => $now
         ]);
 
         return redirect()->route('placeShow', $placeId);

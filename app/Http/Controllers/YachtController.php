@@ -15,23 +15,19 @@ class YachtController extends Controller
     }
 
     public function store($validatedData) {
-
-        $name = $validatedData['yachtName'];
-        $registrationNumber = $validatedData['yachtRegistrationNumber'];
-        $type = $validatedData['yachtType'];
-        $length = $validatedData['yachtLength'];
-        $owner = $validatedData['yachtOwner'];
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
 
         DB::table('yachts')->insertGetId([
-            'name' => $name,
-            'registration_number' => $registrationNumber,
-            'type' => $type, 'length' => $length,
-            'owner' => $owner,
+            'name' => $validatedData['yachtName'],
+            'registration_number' => $validatedData['yachtRegistrationNumber'],
+            'type' => $validatedData['yachtType'],
+            'length' => $validatedData['yachtLength'],
+            'owner' => $validatedData['yachtOwner'],
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
     }
 
@@ -44,22 +40,19 @@ class YachtController extends Controller
     }
 
     public function update($yachtId ,$validatedData) {
-        $name = $validatedData['yachtName'];
-        $registrationNumber = $validatedData['yachtRegistrationNumber'];
-        $type = $validatedData['yachtType'];
-        $length = $validatedData['yachtLength'];
-        $owner = $validatedData['yachtOwner'];
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
 
         DB::table('yachts')->where('id', $yachtId)->update([
-            'name' => $name,
-            'registration_number' => $registrationNumber,
-            'type' => $type, 'length' => $length,
-            'owner' => $owner,
+            'name' => $validatedData['yachtName'],
+            'registration_number' => $validatedData['yachtRegistrationNumber'],
+            'type' => $validatedData['yachtType'],
+            'length' => $validatedData['yachtLength'],
+            'owner' => $validatedData['yachtOwner'],
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
     }
 

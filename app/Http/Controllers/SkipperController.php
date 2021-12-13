@@ -20,19 +20,15 @@ class SkipperController extends Controller
 
     public function store($validatedData) {
 
-        $name = $validatedData['skipperName'];
-        $surname = $validatedData['skipperSurname'];
-        $personalIdNumber = $validatedData['skipperPersonalIdNumber'];
-        $country = $validatedData['skipperCountry'];
-        $email = $validatedData['skipperEmail'];
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
 
         DB::table('skippers')->insertGetId([
-            'name' => $name,
-            'surname' => $surname,
-            'personal_id_number' => $personalIdNumber,
-            'country' => $country,
-            'email' => $email,
+            'name' => $validatedData['skipperName'],
+            'surname' => $validatedData['skipperSurname'],
+            'personal_id_number' => $validatedData['skipperPersonalIdNumber'],
+            'country' => $validatedData['skipperCountry'],
+            'email' => $validatedData['skipperEmail'],
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
             'created_at' => Carbon::now(),
@@ -49,23 +45,20 @@ class SkipperController extends Controller
     }
 
     public function update($skipperId ,$validatedData) {
-        $name = $validatedData['skipperName'];
-        $surname = $validatedData['skipperSurname'];
-        $personalIdNumber = $validatedData['skipperPersonalIdNumber'];
-        $country = $validatedData['skipperCountry'];
-        $email = $validatedData['skipperEmail'];
+
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
 
         DB::table('skippers')->where('id', $skipperId)->update([
-            'name' => $name,
-            'surname' => $surname,
-            'personal_id_number' => $personalIdNumber,
-            'country' => $country,
-            'email' => $email,
+            'name' => $validatedData['skipperName'],
+            'surname' => $validatedData['skipperSurname'],
+            'personal_id_number' => $validatedData['skipperPersonalIdNumber'],
+            'country' => $validatedData['skipperCountry'],
+            'email' => $validatedData['skipperEmail'],
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
     }
 

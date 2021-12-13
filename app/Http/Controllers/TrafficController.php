@@ -81,23 +81,19 @@ class TrafficController extends Controller
         $yacht = DB::table('yachts')->where('registration_number', $yachtRegistrationNumber)->first();
         $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
 
-        $placeId = $validatedMarinaData['place'];
-        $dateOfCome = $validatedMarinaData['dateOfCome'];
-        $dateOfLeave = $validatedMarinaData['dateOfLeave'];
-        $yachtId = $yacht->id;
-        $skipperId = $skipper->id;
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
 
         DB::table('traffic')->insertGetId([
-            'place_id' => $placeId,
-            'date_of_come' => $dateOfCome,
-            'date_of_leave' => $dateOfLeave,
-            'yacht_id' => $yachtId,
-            'skipper_id' => $skipperId,
+            'place_id' => $validatedMarinaData['place'],
+            'date_of_come' => $validatedMarinaData['dateOfCome'],
+            'date_of_leave' => $validatedMarinaData['dateOfLeave'],
+            'yacht_id' => $yacht->id,
+            'skipper_id' => $skipper->id,
             'created_by' => $currUserId,
             'updated_by' => $currUserId,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_at' => $now,
+            'updated_at' => $now
         ]);
 
         return redirect()->route('trafficIndex');   
@@ -123,6 +119,7 @@ class TrafficController extends Controller
         $place = DB::table('places')->where('id',$recordToArchive->place_id)->first();
         $yacht = DB::table('yachts')->where('id',$recordToArchive->yacht_id)->first();
         $skipper = DB::table('skippers')->where('id',$recordToArchive->skipper_id)->first();
+        $now = Carbon::now();
         $currUserId = $this->getCurrUserId();
         
         DB::table('traffic_history')->insertGetId([
@@ -143,7 +140,7 @@ class TrafficController extends Controller
             'created_by' => $recordToArchive->created_by,
             'updated_by' => $recordToArchive->updated_by,
             'archived_by' => $currUserId,
-            'archived_at' => Carbon::now(),
+            'archived_at' => $now,
             'created_at' => $recordToArchive->created_at,
             'updated_at' => $recordToArchive->updated_at,
         ]);
