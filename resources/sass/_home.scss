@@ -1,0 +1,48 @@
+.marina-diagram {
+    .pier-label-wrapper {
+        width: 100%; 
+        background-color: $sand;
+
+        .pier-label {
+            color: $warmWhite;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-left: 20px;
+        }
+    }
+
+    .single-pier {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+
+        .place-tile {
+            display: flex;
+            justify-content: center;
+            width: 50px;
+            height: 60px;
+            border: 2px solid $darkSand;
+            margin-right: -2px;
+
+            a {
+                color: $warmWhite;
+                font-weight: 600;
+                font-size: 1.2rem;
+                text-decoration: none;
+
+                &:hover {
+                    color: $sand;
+                }
+            }
+
+            &.active {
+                background-color: $khaki;
+            }
+
+            &.inactive {
+                background-color: $burgund;
+            }
+            
+        }
+    }
+}

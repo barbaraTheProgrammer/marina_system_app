@@ -10040,6 +10040,45 @@ h3 {
   margin-top: 2vh;
 }
 
+.marina-diagram .pier-label-wrapper {
+  width: 100%;
+  background-color: #E6C86A;
+}
+.marina-diagram .pier-label-wrapper .pier-label {
+  color: #F7F9FB;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-left: 20px;
+}
+.marina-diagram .single-pier {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.marina-diagram .single-pier .place-tile {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 60px;
+  border: 2px solid #996C37;
+  margin-right: -2px;
+}
+.marina-diagram .single-pier .place-tile a {
+  color: #F7F9FB;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.marina-diagram .single-pier .place-tile a:hover {
+  color: #E6C86A;
+}
+.marina-diagram .single-pier .place-tile.active {
+  background-color: #687864;
+}
+.marina-diagram .single-pier .place-tile.inactive {
+  background-color: #A8525E;
+}
+
 .section-header {
   font-size: 1.4rem;
 }
@@ -10153,6 +10192,7 @@ button.link-button:hover {
 }
 .listing-wrapper .history-listing .listing-column {
   border: 1px solid #8FC1E3;
+  margin-right: -1px;
 }
 
 .listing-wrapper {

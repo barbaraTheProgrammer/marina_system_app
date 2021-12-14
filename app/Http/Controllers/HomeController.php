@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $places = DB::table('places')
+            ->orderBy('pier')
+            ->orderBy('spot_number')
+            ->get();
+
+        $piers = DB::table('places')
+            ->select('pier')
+            ->orderBy('pier')
+            ->get();
+
+        $uniquePiers = $piers->unique();
+
+        return view('home', compact('places', 'uniquePiers'));
     }
 }
