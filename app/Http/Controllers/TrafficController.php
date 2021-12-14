@@ -152,8 +152,9 @@ class TrafficController extends Controller
 
     public function showHistory() {
         $archivedRecords = DB::table('traffic_history')->get()->all();
+        $users = DB::table('users')->select('id','name')->get()->all();
 
-        return view('traffic.history', compact('archivedRecords'));
+        return view('traffic.history', compact('archivedRecords', 'users'));
     }
 
     public function validatedMarinaData() {

@@ -58,28 +58,50 @@ class PlaceController extends Controller
     public function update($placeId) {
         $validatedData = $this->validatedPlaceData();
         $now = Carbon::now();
-        $currUserId = $this->getCurrUserId();    
+        $currUserId = $this->getCurrUserId();
 
-        DB::table('places')->where('id', $placeId)->update([
-            'pier' => $validatedData['pier'],
-            'spot_number' => $validatedData['spotNumber'],
-            'status' => $validatedData['status'],
-            'updated_by' => $currUserId,
-            'updated_at' => $now
-        ]);
+        if ($validatedData['status'] == '0') {
 
-        return redirect()->route('placeShow', $placeId);
+            $inUse = $this->checkIfInUse($placeId);
+
+            if ($inUse == true) {
+                $message = "Place is currently in use (in traffic or reservations). Can not change status to unactive.";
+                return redirect()->route('placeIndex', ['message' => $message]);
+
+            } else {
+                DB::table('places')->where('id', $placeId)->update([
+                    'pier' => $validatedData['pier'],
+                    'spot_number' => $validatedData['spotNumber'],
+                    'status' => $validatedData['status'],
+                    'updated_by' => $currUserId,
+                    'updated_at' => $now
+                ]);
+        
+                return redirect()->route('placeShow', $placeId);
+            }
+        } else {
+            DB::table('places')->where('id', $placeId)->update([
+                'pier' => $validatedData['pier'],
+                'spot_number' => $validatedData['spotNumber'],
+                'status' => $validatedData['status'],
+                'updated_by' => $currUserId,
+                'updated_at' => $now
+            ]);
+    
+            return redirect()->route('placeShow', $placeId);
+        }
     }
 
     public function destroy($placeId) {
-        $connectedRecord = DB::table('traffic')->select('id')->where('id', $placeId)->first();
-        $message = "Place is currently in use. Can not delete.";
+        $inUse = $this->checkIfInUse($placeId);
 
-        if ($connectedRecord == null) {
+        if ($inUse == true) {
+            $message = "Place is currently in use (in traffic or reservations). Can not delete.";
+            return redirect()->route('placeIndex', ['message' => $message]);
+
+        } else {
             DB::table('places')->where('id', $placeId)->delete();
             return redirect()->route('placeIndex');
-        } else {
-            return redirect()->route('placeIndex', ['message' => $message]);
         }
     }
 
@@ -93,5 +115,16 @@ class PlaceController extends Controller
 
     private function getCurrUserId() {
         return auth()->user()->id;
+    }
+
+    private function checkIfInUse($placeId) {
+        $relatedTraffic = DB::table('traffic')->select('id')->where('id', $placeId)->first();
+        $relatedReservations = DB::table('reservations')->select('id')->where('id', $placeId)->first();
+
+        if ($relatedTraffic == null && $relatedReservations == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

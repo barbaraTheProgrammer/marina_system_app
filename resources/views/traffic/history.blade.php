@@ -60,19 +60,37 @@
                 </div>
                 <div class="listing-column">
                     <div>
-                        <span>Created by: {{ $archivedRecord->created_by }}</span> 
+                        <span>Created by: 
+                            @foreach ($users as $user)
+                                @if ($archivedRecord->created_by == $user->id)
+                                    {{ $user->name }}
+                                @endif
+                            @endforeach
+                        </span> 
                     </div>
                     <div>
                         <span>Created at: {{ $archivedRecord->created_at }}</span>
                     </div>
                     <div>
-                        <span>Last update by: {{ $archivedRecord->updated_by }}</span>
+                        <span>Last update by: 
+                            @foreach ($users as $user)
+                                @if ($archivedRecord->updated_by == $user->id)
+                                    {{ $user->name }}
+                                @endif
+                            @endforeach
+                        </span>
                     </div>
                     <div>
                         <span>Last update at: {{ $archivedRecord->updated_at }}</span> 
                     </div>
                     <div>
-                        <span>Archived by: {{ $archivedRecord->archived_by }}</span>
+                        <span>Archived by: 
+                            @foreach ($users as $user)
+                                @if ($archivedRecord->archived_by == $user->id)
+                                    {{ $user->name }}
+                                @endif
+                            @endforeach
+                        </span>
                     </div>
                     <div>
                         <span>Archived at: {{ $archivedRecord->archived_at }}</span>
