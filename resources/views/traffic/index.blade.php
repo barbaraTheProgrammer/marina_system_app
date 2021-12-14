@@ -3,7 +3,7 @@
 @section('content')
     <h1>Traffic in marina</h1>
 
-    {{-- <form action="{{ route('trafficCreate') }}" method="post">
+    <form action="{{ route('trafficCreate') }}" method="get">
         <div>
             <label for="registrationNumber">Registration number:</label>
             <input type="text" name="registrationNumber" value="{{ old("registrationNumber") }}">
@@ -18,14 +18,6 @@
                 <div class="error-message"> {{ $message }} </div>
             @enderror
         </div>
-        <div>
-            <button class="link-button">new coming</button>
-        </div>
-    
-        @csrf
-    </form> --}}
-
-    <form action="{{ route('trafficCreate') }}" method="get">
         <div>
             <button class="link-button">new coming</button>
         </div>

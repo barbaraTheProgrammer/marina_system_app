@@ -28,16 +28,16 @@ class TrafficController extends Controller
     }
 
     public function create() {
-        // $validatedData = request()->validate([
-        //     'registrationNumber' => 'required',
-        //     'skipperEmail' => 'required|email'
-        // ]);
+        $validatedData = request()->validate([
+            'registrationNumber' => 'required',
+            'skipperEmail' => 'required|email'
+        ]);
 
-        // $registrationNumber = $validatedData['registrationNumber'];
-        // $skipperEmail = $validatedData['skipperEmail'];
+        $registrationNumber = $validatedData['registrationNumber'];
+        $skipperEmail = $validatedData['skipperEmail'];
 
-        // $yacht = DB::table('yachts')->where('registration_number', $registrationNumber)->first();
-        // $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
+        $yacht = DB::table('yachts')->where('registration_number', $registrationNumber)->first();
+        $skipper = DB::table('skippers')->where('email', $skipperEmail)->first();
 
         $avaliablePlaces = DB::table('places')
             ->where('status', '1')
@@ -51,8 +51,13 @@ class TrafficController extends Controller
             ->get()
             ->all();
 
-        // return view('traffic.create', ['yacht' => $yacht, 'skipper' => $skipper, 'registrationNumber' => $registrationNumber, 'skipperEmail' => $skipperEmail, 'avaliablePlaces' => $avaliablePlaces]);
-        return view('traffic.create', ['avaliablePlaces' => $avaliablePlaces]);
+        return view('traffic.create', [
+            'yacht' => $yacht,
+            'skipper' => $skipper,
+            'registrationNumber' => $registrationNumber,
+            'skipperEmail' => $skipperEmail,
+            'avaliablePlaces' => $avaliablePlaces
+        ]);
     }
 
     public function store() {
