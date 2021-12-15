@@ -66,7 +66,7 @@ class ReservationController extends Controller
             'yachtLength' => 'required|numeric|min:0'
         ]);
         $now = Carbon::now();
-        $currUser = $his->getCurrUserId();
+        $currUser = $this->getCurrUserId();
 
         DB::table('reservations')->insertGetId([
             'place_id' => request()->placeId,
