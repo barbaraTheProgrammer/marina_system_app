@@ -11,3 +11,22 @@
         }
     }
 }
+
+.details-wrapper {
+    width: 100%;
+
+    .yacht-history-listing  {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 1rem;
+
+        span {
+            padding: 2px;
+        }
+
+        .listing-column {
+            border: 1px solid $lightBlue;
+            margin-right: -1px;
+        }
+    }
+}

@@ -10,7 +10,6 @@ class YachtController extends Controller
 {
     public function index() {
         $yachts = DB::table('yachts')->orderBy('name', 'asc')->get()->all();
-
         return view('yacht.index', ['yachts' => $yachts]);
     }
 
@@ -35,8 +34,11 @@ class YachtController extends Controller
         $yacht = DB::table('yachts')->where('id', $yachtId)->first();
         $yachtCreatedBy = DB::table('users')->select('name')->where('id', $yacht->created_by)->first();
         $yachtUpdatedBy = DB::table('users')->select('name')->where('id', $yacht->updated_by)->first();
+
+        $currTrafficRecord = DB::table('traffic')->select('id')->where('yacht_id', $yachtId)->first();
+        $archivedRecords = DB::table('traffic_history')->where('yacht_id', $yachtId)->get()->all();
         
-        return view('yacht.show', compact('yacht','yachtCreatedBy','yachtUpdatedBy'));
+        return view('yacht.show', compact('yacht','yachtCreatedBy','yachtUpdatedBy','currTrafficRecord','archivedRecords'));
     }
 
     public function update($yachtId ,$validatedData) {
