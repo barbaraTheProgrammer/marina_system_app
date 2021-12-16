@@ -15,11 +15,20 @@ class CreateTrafficTable extends Migration
     {
         Schema::create('traffic', function (Blueprint $table) {
             $table->id();
-            $table->string('place_id')->unique();
+            $table->foreignId('place_id')
+                ->constrains('places')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->date('date_of_come');
             $table->date('date_of_leave');
-            $table->string('yacht_id');
-            $table->string('skipper_id');
+            $table->foreignId('yacht_id')
+                ->constrains('yachts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('skipper_id')
+                ->constrains('skippers')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('created_by');
             $table->string('updated_by');
             $table->timestamps();

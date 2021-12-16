@@ -19,11 +19,13 @@ class CreateTrafficHistoryTable extends Migration
             $table->string('spot_number');
             $table->date('date_of_come');
             $table->date('date_of_leave');
+            $table->foreignId('yacht_id')->constratins('yachts');
             $table->string('yacht_name');
             $table->string('yacht_registration_number')->unique();
             $table->string('yacht_type');
             $table->string('yacht_length');
             $table->string('yacht_owner');
+            $table->foreignId('skipper_id')->constratins('skippers');
             $table->string('skipper_name');
             $table->string('skipper_surname');
             $table->string('skipper_personal_id_number')->unique();
