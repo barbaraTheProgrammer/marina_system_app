@@ -7,15 +7,17 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Http\Controllers\YachtController;
 use App\Http\Controllers\SkipperController;
+use App\Http\Controllers\ReservationController;
 
 class TrafficController extends Controller
 {
     protected $YachtController;
     protected $SkipperController;
 
-    public function __construct(YachtController $YachtController, SkipperController $SkipperController) {
+    public function __construct(YachtController $YachtController, SkipperController $SkipperController, ReservationController $ResevationController) {
         $this->YachtController = $YachtController;
         $this->SkipperController = $SkipperController;
+        $this->ReservationController = $ResevationController;
     }
 
 
@@ -60,6 +62,18 @@ class TrafficController extends Controller
         ]);
     }
 
+    public function activateReservation($reservationId) {
+        $reservation = DB::table('reservations')->where('id', $reservationId)->first();
+
+        $placeArray = DB::table('places')->where('id', $reservation->place_id)->first();
+        $place = $placeArray->pier . $placeArray->spot_number;
+
+        return view('traffic.active-reservation', [
+            'reservation' => $reservation,
+            'reservatedPlace' => $place
+        ]);
+    }
+
     public function store() {
         $validatedMarinaData = $this->validatedMarinaData();
         $validatedYachtData = $this->YachtController->validatedYachtData();
@@ -101,15 +115,19 @@ class TrafficController extends Controller
             'updated_at' => $now
         ]);
 
+        $reservationId = request()->reservationId;
+        if ($reservationId !== null) {
+            $this->ReservationController->destroy($reservationId);
+        }
+
         return redirect()->route('trafficIndex');   
     }
 
     public function show($recordId) {
         $trafficRecord = DB::table('traffic')->where('id', $recordId)->first();
-        $pier = DB::table('places')->where('id', $trafficRecord->place_id)->first()->pier;
-        $spotNumber = DB::table('places')->where('id', $trafficRecord->place_id)->first()->spot_number;
+        $placeArray = DB::table('places')->where('id', $trafficRecord->place_id)->first();
 
-        $place = $pier.$spotNumber;
+        $place = $placeArray->pier . $placeArray->spot_number;
         $yachtName = DB::table('yachts')->select('name')->where('id', $trafficRecord->yacht_id)->first();
         $skipperName = DB::table('skippers')->select('name')->where('id', $trafficRecord->skipper_id)->first();
         $skipperSurname = DB::table('skippers')->select('surname')->where('id', $trafficRecord->skipper_id)->first();
@@ -132,11 +150,13 @@ class TrafficController extends Controller
             'spot_number' => $place->spot_number,
             'date_of_come' => $recordToArchive->date_of_come,
             'date_of_leave' => $recordToArchive->date_of_leave,
+            'yacht_id' => $yacht->id,
             'yacht_name' => $yacht->name,
             'yacht_registration_number' => $yacht->registration_number,
             'yacht_type' => $yacht->type, 
             'yacht_length' => $yacht->length,
             'yacht_owner' => $yacht->owner,
+            'skipper_id' => $skipper->id,
             'skipper_name' => $skipper->name,
             'skipper_surname' => $skipper->surname,
             'skipper_personal_id_number' => $skipper->personal_id_number,

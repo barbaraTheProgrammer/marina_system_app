@@ -49,4 +49,8 @@
             </div>
         </div>
     @endif
+
+    <div>
+        <a class="link-button" href="{{ route('trafficActivateReservation', $reservation->id) }}">activate reservation</a>
+    </div>
 @endsection

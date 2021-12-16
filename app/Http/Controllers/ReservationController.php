@@ -95,6 +95,10 @@ class ReservationController extends Controller
         return view('reservation.show', compact('reservation', 'places', 'recordCreatedBy', 'recordUpdatedBy'));
     }
 
+    public function destroy($reservationId) {
+        DB::table('reservations')->where('id', $reservationId)->delete();
+    }
+
     private function getCurrUserId() {
         return auth()->user()->id;
     }

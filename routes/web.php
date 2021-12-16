@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/traffic', 'App\Http\Controllers\TrafficController@index')->name('trafficIndex');
     Route::get('/traffic/create', 'App\Http\Controllers\TrafficController@create')->name('trafficCreate');
+    Route::get('/traffic/create/activate-reservation/{reservation}', 'App\Http\Controllers\TrafficController@activateReservation')->name('trafficActivateReservation');
     Route::post('/traffic', 'App\Http\Controllers\TrafficController@store')->name('trafficStore');
     Route::get('/traffic/{record}', 'App\Http\Controllers\TrafficController@show')->name('trafficShow');
     Route::get('/traffic/history/{filter}', 'App\Http\Controllers\TrafficController@showHistory')->name('trafficShowHistory');
