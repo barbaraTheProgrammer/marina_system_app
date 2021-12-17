@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Traffic in marina</h1>
+    <h1 class="header">Traffic in marina</h1>
 
     <form action="{{ route('trafficCreate') }}" method="get">
         <div>
@@ -25,9 +25,9 @@
         @csrf
     </form>
 
-    <div>
+    <div class="traffic-listing-header-wrapper">
+        <h3 class="traffic-section-header">Current state</h3>
         <a href="{{ route('trafficShowHistory', ['filter' => 'all']) }}" class="button">show history</a>
-        <h2>Current state</h2>
     </div>
 
     <div class="listing-wrapper">
@@ -38,7 +38,7 @@
             <span>Leaving</span>
         </div>
         @forelse ($traffic as $trafficRecord)
-            <div class="traffic-listing">
+            <div class="listing traffic-listing">
                 <div>
                     <a href="{{ route('placeShow', $trafficRecord->place_id) }}">
                         @foreach ($places as $place)

@@ -1,22 +1,12 @@
-.listing-wrapper {
-    width: 100%;
-
-    .places-listing  {
-        display: grid;
-        grid-template-columns: 30% 30% 40%;
-        font-size: 1rem;
-
-        &.header-element {
-            font-size: 1.5rem;
-        }
-    }
+.places-listing  {
+    grid-template-columns: 30% 30% 40%;
 }
 
-.details-wrapper {
-   font-size: 1rem;
+.buttons-wrapper {
+    display: flex;
+    margin-top: 25px;
 
-   .action-buttons {
-       margin-top: 20px;
-       margin-: 10px;
-   }
+    div {
+        margin-right: 25px;
+    }
 }

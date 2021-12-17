@@ -2,45 +2,39 @@
 
 @section('content')
     @if ($skipper == null)
-        <h1>Skipper doesn't exists</h1>
+        <h1 class="header">Skipper doesn't exists</h1>
     @else
-        <h1>Details of skipper</h1>
+        <h1 class="header">Details of skipper</h1>
         
         <div class="details-wrapper">
             <div>
-                <span>Name: {{ $skipper->name }}</span>
+                <span class="detail-label">Name:</span> {{ $skipper->name }}
             </div>
             <div>
-                <span>Surname: {{ $skipper->surname }}</span>
+                <span class="detail-label">Surname:</span> {{ $skipper->surname }}
             </div>
             <div>
-                <span>Personal ID number: {{ $skipper->personal_id_number }}</span>
+                <span class="detail-label">Personal ID number:</span> {{ $skipper->personal_id_number }}
             </div>
             <div>
-                <span>Country: {{ $skipper->country }}</span>
+                <span class="detail-label">Country:</span> {{ $skipper->country }}
             </div>
             <div>
-                <span>Email: {{ $skipper->email }}</span>
+                <span class="detail-label">Email:</span> {{ $skipper->email }}
             </div>
-            <div>
-                <span>Created by: {{ $skipperCreatedBy->name }}</span>
+            
+            <div class="administration-information">
+                <div>
+                    <span class="info-label">Created by:</span> {{ $skipperCreatedBy->name }}
+                </div>
+                <div>
+                    <span class="info-label">Created at:</span> {{ $skipper->created_at }}
+                </div>
+                <div>
+                    <span class="info-label">Last update:</span> {{ $skipper->updated_at }} 
+                    <span class="info-label">by:</span> {{ $skipperUpdatedBy->name }}
+                </div>         
             </div>
-            <div>
-                <span>Created at: {{ $skipper->created_at }}</span>
-            </div>
-            <div>
-                <span>Last update: {{ $skipper->updated_at }} by: {{ $skipperUpdatedBy->name }}</span>
-            </div>
-        
-            {{-- <div class="action-buttons">
-                <a class="link-button" href="{{ route('placeEdit', $place->id) }}">edit place</a>
-        
-                <form action="{{ route('placeDestroy', $place->id) }}" method="post" onclick="return confirm('Are you sure?')">
-                    @method('DELETE')
-                    @csrf
-                    <button class="link-button">delete</button>
-                </form>
-            </div> --}}
         </div>
     @endif
 

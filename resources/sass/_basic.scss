@@ -1,5 +1,11 @@
+.header {
+    margin-bottom: 50px;
+}
+
 .section-header {
+    margin-top: 15px;
     font-size: 1.4rem;
+    display: block;
 }
 
 .button {
@@ -22,6 +28,7 @@
 button.link-button {
     display: inline-block;
     padding: 5px 10px;
+    margin-bottom: 25px;
     background-color: $khaki;
     color: $warmWhite;
     border: none;
@@ -39,4 +46,33 @@ button.link-button {
 
 .error-message {
     color: $oceanBlue;
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+.administration-information {
+    margin-top: 25px;
+    color: $lightBlue;
+
+    .info-label {
+        font-weight: bold;
+    }
+}
+
+.listing-wrapper {
+    width: 100%;
+
+    .header-element {
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+        display: grid;
+    }
+}
+
+.listing {
+    display: grid;
+    font-size: 1rem;
+    border-top: 1px solid $oceanBlue;
 }

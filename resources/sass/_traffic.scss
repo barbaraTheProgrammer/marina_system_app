@@ -1,13 +1,22 @@
-.listing-wrapper {
-    width: 100%;
+.traffic-listing  {
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+}
 
-    .traffic-listing  {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
-        font-size: 1rem;
+.traffic-listing-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 25px 0;
 
-        &.header-element {
-            font-size: 1.5rem;
-        }
+    .traffic-section-header {
+        display: block;
+        margin-bottom: 0;
     }
+
+    .button {
+        margin-top: 0;
+    }
+}
+
+.action-buttons {
+    margin-top: 25px;
 }

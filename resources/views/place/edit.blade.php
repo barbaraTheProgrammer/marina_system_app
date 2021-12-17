@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Edit place</h1>
+<h1 class="header">Edit place</h1>
 
 <form action="{{ route('placeUpdate', $place->id) }}" method="post">
 

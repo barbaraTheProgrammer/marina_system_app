@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Avaliable places for reservation</h1>
+    <h1 class="header">Avaliable places for reservation</h1>
     <h2>from  {{ $checkingDateOfCome }} to {{ $checkingDateOfLeave }}</h2>
 
     <div class="avaliable-places-listing">
@@ -11,7 +11,7 @@
                 <a href="{{ route('reservationCreate', ['place' => $avaliablePlace->id, 'dateOfCome' => $checkingDateOfCome, 'dateOfLeave' => $checkingDateOfLeave]) }}" class="button">make reservation</a>
             </div>
         @empty
-            <h2>There are no free places in these days</h2>
+            <h2 class="info-message">There are no free places in these days</h2>
         @endforelse
     </div>
     

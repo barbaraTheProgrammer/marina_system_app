@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>New coming</h1>
+    <h1 class="header">New coming</h1>
 
     <form action="{{ route('trafficStore') }}" method="post">
 

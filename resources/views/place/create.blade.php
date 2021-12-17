@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Create place</h1>
+<h1 class="header">Create place</h1>
 
 <form action="{{ route('placeStore') }}" method="post">
     <div>

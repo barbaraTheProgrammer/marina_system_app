@@ -1,10 +1,19 @@
-.listing-wrapper {
-    width: 100%;
+.history-header-wrapper {
+    .button {
+        margin-bottom: 25px;
+    }
+
+    .header {
+        margin: 25px 0; 
+    }
+}
+
+.listing-element {
+    margin-top: 25px;
 
     .history-listing  {
-        display: grid;
+        border-top: none;
         grid-template-columns: 25% 25% 25% 25%;
-        font-size: 1rem;
 
         span {
             padding: 2px;

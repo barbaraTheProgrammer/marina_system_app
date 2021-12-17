@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Yachts</h1>
+    <h1 class="header">Yachts</h1>
 
     <div class="listing-wrapper">
         <div class="yachts-listing header-element">
@@ -10,7 +10,7 @@
             <span>Owner</span>
         </div>
         @forelse($yachts as $yacht)
-            <div class="yachts-listing">
+            <div class="listing yachts-listing">
                 <span>{{ $yacht->name }}</span>
                 <span>{{ $yacht->registration_number }}</span>
                 <span>{{ $yacht->owner }}</span>

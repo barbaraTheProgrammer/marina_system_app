@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="marina-diagram">
-    <h1>Marina diagram</h1>
+    <h1 class="header">Marina diagram</h1>
 
     @forelse ($uniquePiers as $singlePier)
         <div class="pier-label-wrapper"><span class="pier-label">PIER {{ $singlePier->pier }}</span></div>

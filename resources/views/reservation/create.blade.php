@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create reservation</h1>
+    <h1 class="header">Create reservation</h1>
 
     <form action="{{ route('reservationStore', ['placeId' => $place->id, 'dateOfCome' => $dateOfCome, 'dateOfLeave' => $dateOfLeave]) }}" method="post">
         <span class="section-header">Place:</span>

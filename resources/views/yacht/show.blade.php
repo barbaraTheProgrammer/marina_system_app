@@ -2,38 +2,43 @@
 
 @section('content')
     @if ($yacht == null)
-    <h1>Yacht doesn't exists</h1>
+    <h1 class="header">Yacht doesn't exists</h1>
     @else
-    <h1>Details of yacht {{ $yacht->name }}</h1>
+    <h1 class="header">Details of yacht {{ $yacht->name }}</h1>
 
     <div class="details-wrapper">
         <div>
-            <span>Name: {{ $yacht->name }}</span>
+            <span class="detail-label">Name:</span> {{ $yacht->name }}
         </div>
         <div>
-            <span>Registration number: {{ $yacht->registration_number }}</span>
+            <span class="detail-label">Registration number:</span> {{ $yacht->registration_number }}
         </div>
         <div>
-            <span>Type: {{ $yacht->type }}</span>
+            <span class="detail-label">Type:</span> {{ $yacht->type }}
         </div>
         <div>
-            <span>Length: {{ $yacht->length }}</span>
+            <span class="detail-label">Length:</span> {{ $yacht->length }}
         </div>
         <div>
-            <span>Owner: {{ $yacht->owner }}</span>
-        </div>
-        <div>
-            <span>Created by: {{ $yachtCreatedBy->name }}</span>
-        </div>
-        <div>
-            <span>Created at: {{ $yacht->created_at }}</span>
-        </div>
-        <div>
-            <span>Last update: {{ $yacht->updated_at }} by: {{ $yachtUpdatedBy->name }}</span>
+            <span class="detail-label">Owner:</span> {{ $yacht->owner }}
         </div>
 
+        <div class="administration-information">
+            <div>
+                <span class="info-label">Created by:</span> {{ $yachtCreatedBy->name }}
+            </div>
+            <div>
+                <span class="info-label">Created at:</span> {{ $yacht->created_at }}
+            </div>
+            <div>
+                <span class="info-label">Last update:</span> {{ $yacht->updated_at }} 
+                <span class="info-label">by:</span> {{ $yachtUpdatedBy->name }}
+            </div>            
+        </div>
+        
+
         <div class="listing-wrapper">
-            <h3>History</h3>
+            <h3 class="yacht-section-header">History</h3>
             @forelse ($archivedRecords as $archivedRecord)
                 <h5>From: {{ $archivedRecord->date_of_come }} to: {{ $archivedRecord->date_of_leave }}</h5>
                 <div class="yacht-history-listing">

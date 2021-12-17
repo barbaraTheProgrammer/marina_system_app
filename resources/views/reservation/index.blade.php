@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Reservations</h1>
+    <h1 class="header">Reservations</h1>
 
     <form action="{{ route('reservationCheckAvaliablePlaces') }}" method="post">
         <div>
@@ -35,7 +35,7 @@
             <span>Skipper surname</span>
         </div>
         @forelse ($reservations as $reservation)
-            <div class="reservation-listing">
+            <div class="listing reservation-listing">
                 <div>
                     <a href="{{ route('placeShow', $reservation->place_id) }}">
                         @foreach ($places as $place)
