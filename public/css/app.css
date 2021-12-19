@@ -10215,6 +10215,17 @@ button.link-button:hover {
   grid-template-columns: 1fr 1fr 1fr 2fr;
 }
 
+.filters-wrapper {
+  display: grid;
+  justify-content: end;
+}
+.filters-wrapper h5 {
+  margin: 0;
+}
+.filters-wrapper .button {
+  text-align: center;
+}
+
 .history-header-wrapper .button {
   margin-bottom: 25px;
 }

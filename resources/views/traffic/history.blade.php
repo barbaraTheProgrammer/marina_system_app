@@ -1,9 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="history-header-wrapper">
         <a href="{{ route('trafficIndex') }}" class="button">show current state</a>
-        <h3 class="header">History</h3>
+        <h3 class="header">History 
+            @if (isset(request()->date))
+                <span class="info-message">filtered: {{ request()->date }}</span>
+            @endif
+        </h3>
+    </div>
+
+    <div class="filters-wrapper">
+        <h5>filters:</h5>
+        <form action="{{ route('trafficShowHistory', ['filter' => 'filtered']) }}" method="get">
+            <label for="date">Date: </label>
+            <input type="date" name="date">
+            @error('date')
+                <div class="error-message"> {{ $message }} </div>
+            @enderror
+            
+            @csrf
+            <button class="button">show</button>
+        </form>
+        <a href="{{ route('trafficShowHistory', ['filter' => 'all']) }}" class="button">clear filters</a>
     </div>
 
     <div class="listing-wrapper">

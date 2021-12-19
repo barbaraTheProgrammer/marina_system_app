@@ -1,3 +1,16 @@
+.filters-wrapper {
+    display: grid;
+    justify-content: end;
+
+    h5 {
+        margin: 0;
+    }
+
+    .button {
+        text-align: center;
+    }
+}
+
 .history-header-wrapper {
     .button {
         margin-bottom: 25px;

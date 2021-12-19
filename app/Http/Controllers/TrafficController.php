@@ -176,7 +176,19 @@ class TrafficController extends Controller
     }
 
     public function showHistory() {
-        $archivedRecords = DB::table('traffic_history')->get()->all();
+        $validatedFilter = request()->validate([
+            'date' => 'date'
+        ]);
+
+        if ($validatedFilter) {
+            $archivedRecords = DB::table('traffic_history')
+                ->whereDate('date_of_come', '<=', $validatedFilter['date'])
+                ->whereDate('date_of_leave', '>=', $validatedFilter['date'])
+                ->get()->all();
+        } else {
+            $archivedRecords = DB::table('traffic_history')->get()->all();
+        }
+        
         $users = DB::table('users')->select('id','name')->get()->all();
 
         return view('traffic.history', compact('archivedRecords', 'users'));

@@ -40,7 +40,7 @@
         <div class="listing-wrapper">
             <h3 class="yacht-section-header">History</h3>
             @forelse ($archivedRecords as $archivedRecord)
-                <h5>From: {{ $archivedRecord->date_of_come }} to: {{ $archivedRecord->date_of_leave }}</h5>
+                <h5>From: <strong>{{ $archivedRecord->date_of_come }}</strong> to: <strong>{{ $archivedRecord->date_of_leave }}</strong></h5>
                 <div class="yacht-history-listing">
                     <div class="listing-column">
                         <div>
