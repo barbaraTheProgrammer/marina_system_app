@@ -1,11 +1,60 @@
 .marina-diagram {
+    .home-date-filter {
+        display: flex;
+        margin-bottom: 50px;
+
+        .filter-label {
+            margin-bottom: 0;
+        }
+
+        .today-button {
+            margin-left: 15px;
+        }
+    }
+
+    .diagram-legend {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 75px;
+        margin-top: -75px;
+
+        .item {
+            margin-right: 25px;
+            display: flex;
+
+            .color {
+                display: block;
+                width: 25px;
+                height: 25px;
+                border: 2px solid $oceanBlue;
+                margin-right: 10px;
+    
+                &.default {
+                    background-color: transparent;
+                }
+    
+                &.inactive {
+                    background-color: $burgund;
+                }
+    
+                &.busy {
+                    background-color: $blue;
+                }
+    
+                &.reservated {
+                    background-color: $lightBlue;
+                }
+            }
+        }
+    }
+
     .pier-label-wrapper {
         width: 100%; 
-        background-color: $sand;
+        background-color: $oceanBlue;
 
         .pier-label {
             color: $warmWhite;
-            font-weight: 600;
+            font-weight: 900;
             font-size: 1.3rem;
             margin-left: 20px;
         }
@@ -19,9 +68,9 @@
         .place-tile {
             display: flex;
             justify-content: center;
-            width: 50px;
-            height: 60px;
-            border: 2px solid $darkSand;
+            width: 60px;
+            height: 70px;
+            border: 2px solid $oceanBlue;
             margin-right: -2px;
 
             a {
@@ -29,18 +78,26 @@
                 font-weight: 600;
                 font-size: 1.2rem;
                 text-decoration: none;
-
-                &:hover {
-                    color: $sand;
-                }
             }
 
-            &.active {
-                background-color: $khaki;
+            &.default {
+                background-color: transparent;
+
+                a {
+                    color: $oceanBlue;
+                }
             }
 
             &.inactive {
                 background-color: $burgund;
+            }
+
+            &.busy {
+                background-color: $blue;
+            }
+
+            &.reservated {
+                background-color: $lightBlue;
             }
             
         }

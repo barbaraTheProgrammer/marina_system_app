@@ -10040,13 +10040,52 @@ h3 {
   margin-top: 2vh;
 }
 
+.marina-diagram .home-date-filter {
+  display: flex;
+  margin-bottom: 50px;
+}
+.marina-diagram .home-date-filter .filter-label {
+  margin-bottom: 0;
+}
+.marina-diagram .home-date-filter .today-button {
+  margin-left: 15px;
+}
+.marina-diagram .diagram-legend {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 75px;
+  margin-top: -75px;
+}
+.marina-diagram .diagram-legend .item {
+  margin-right: 25px;
+  display: flex;
+}
+.marina-diagram .diagram-legend .item .color {
+  display: block;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #31708E;
+  margin-right: 10px;
+}
+.marina-diagram .diagram-legend .item .color.default {
+  background-color: transparent;
+}
+.marina-diagram .diagram-legend .item .color.inactive {
+  background-color: #A8525E;
+}
+.marina-diagram .diagram-legend .item .color.busy {
+  background-color: #5085A5;
+}
+.marina-diagram .diagram-legend .item .color.reservated {
+  background-color: #8FC1E3;
+}
 .marina-diagram .pier-label-wrapper {
   width: 100%;
-  background-color: #E6C86A;
+  background-color: #31708E;
 }
 .marina-diagram .pier-label-wrapper .pier-label {
   color: #F7F9FB;
-  font-weight: 600;
+  font-weight: 900;
   font-size: 1.3rem;
   margin-left: 20px;
 }
@@ -10058,9 +10097,9 @@ h3 {
 .marina-diagram .single-pier .place-tile {
   display: flex;
   justify-content: center;
-  width: 50px;
-  height: 60px;
-  border: 2px solid #996C37;
+  width: 60px;
+  height: 70px;
+  border: 2px solid #31708E;
   margin-right: -2px;
 }
 .marina-diagram .single-pier .place-tile a {
@@ -10069,14 +10108,20 @@ h3 {
   font-size: 1.2rem;
   text-decoration: none;
 }
-.marina-diagram .single-pier .place-tile a:hover {
-  color: #E6C86A;
+.marina-diagram .single-pier .place-tile.default {
+  background-color: transparent;
 }
-.marina-diagram .single-pier .place-tile.active {
-  background-color: #687864;
+.marina-diagram .single-pier .place-tile.default a {
+  color: #31708E;
 }
 .marina-diagram .single-pier .place-tile.inactive {
   background-color: #A8525E;
+}
+.marina-diagram .single-pier .place-tile.busy {
+  background-color: #5085A5;
+}
+.marina-diagram .single-pier .place-tile.reservated {
+  background-color: #8FC1E3;
 }
 
 .header {
