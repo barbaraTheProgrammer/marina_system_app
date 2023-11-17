@@ -1,6 +1,22 @@
-Marina yachts management application.
+Marina yachts management application called Marineye.
 
-This system was intended for small marinas, specifically to automate marina management, through a web application. The solutions used will be ideal for controlling up to fifty berths. The work includes an analysis of the market in terms of available systems with similar features, a discussion of the target group of users and the usage of the system, as well as a discussion of the structure, functionalities and architecture of the resulting application. The application was written in PHP language in Laravel framework. MySQL was used to handle the database.
+Marineye system was intended for small marinas to automate their management, through a web application built in Laravel. The solution was planned for controlling up to fifty berths. 
+
+System provided such fetures as:
++ Constant overview of the current situation of the marina, thanks to a graphically presented marina diagram.
++ Management of berths and their availability, allowing for the deactivation of berths, for example due to renovation or damage.
++ Control of marina traffic by keeping a record of visitor arrivals.
++ Keeping a record of the moored yachts and their captains.
++ Reservation system - Booking of berths and booking activation when the yacht arrives.
++ Marina archive - History of moored yachts with their captains and information on mooring location and duration of stay.
+
+The application was written in PHP language in Laravel framework. MySQL was used to handle the database.
+
+<p align="center"><img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/f51d8b5a-cd7d-4e0e-b641-22f6df8ce11d" width="1000"></p>
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/4cab84f0-3456-4bb7-9a9b-176645dae015" width="500" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/106bdcec-1e9d-4ffc-81bb-0c89ce5399d2" width="500" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/160fe70e-cf69-431e-89e5-62ebde79f8e4" width="500" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/12bc016f-9dda-4f53-a3a8-690876f55338" width="500" height="300">
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
