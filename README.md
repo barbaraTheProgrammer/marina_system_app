@@ -12,11 +12,11 @@ System provided such fetures as:
 
 The application was written in PHP language in Laravel framework. MySQL was used to handle the database.
 
-<p align="center"><img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/f51d8b5a-cd7d-4e0e-b641-22f6df8ce11d" width="1000"></p>
-<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/4cab84f0-3456-4bb7-9a9b-176645dae015" width="500" height="300">
-<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/106bdcec-1e9d-4ffc-81bb-0c89ce5399d2" width="500" height="300">
-<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/160fe70e-cf69-431e-89e5-62ebde79f8e4" width="500" height="300">
-<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/12bc016f-9dda-4f53-a3a8-690876f55338" width="500" height="300">
+<p align="center"><img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/f51d8b5a-cd7d-4e0e-b641-22f6df8ce11d" width="70%"></p>
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/4cab84f0-3456-4bb7-9a9b-176645dae015" width="50%" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/106bdcec-1e9d-4ffc-81bb-0c89ce5399d2" width="49.5%" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/160fe70e-cf69-431e-89e5-62ebde79f8e4" width="50%" height="300">
+<img src="https://github.com/barbaraTheProgrammer/marina_system_app/assets/59622825/12bc016f-9dda-4f53-a3a8-690876f55338" width="49.5%" height="300">
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
